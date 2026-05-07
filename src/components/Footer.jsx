@@ -1,0 +1,61 @@
+export default function Footer() {
+  return (
+    <footer className="relative py-20 text-center overflow-hidden"
+      style={{ background: 'linear-gradient(145deg, #1E1014, #2B1A2A, #1E1014)' }}>
+
+      {/* Rising petals */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(8)].map((_, i) => (
+          <span
+            key={i}
+            className="absolute rounded-tl-full rounded-br-full petal-rise"
+            style={{
+              width: `${7 + i * 1.5}px`, height: `${11 + i * 2}px`,
+              left: `${i * 13}%`, bottom: '-20px',
+              '--dur': `${7 + i * 0.5}s`, '--delay': `${i * 0.4}s`,
+              background: 'radial-gradient(ellipse, rgba(242,196,206,0.4), rgba(162,82,106,0.1))',
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="relative z-10">
+        {/* Names */}
+        <div className="flex items-center justify-center gap-3 mb-2">
+          <span className="font-script text-[3rem] text-cream/90 leading-none">Timothy</span>
+          <span className="text-2xl">💍</span>
+          <span className="font-script text-[3rem] text-cream/90 leading-none">Hope</span>
+        </div>
+
+        <p className="font-body text-[0.76rem] tracking-[0.4em] uppercase text-gold mb-7">
+          June 13 · 2026
+        </p>
+
+        <blockquote className="font-display italic text-cream/50 text-[0.9rem] max-w-md mx-auto px-6 leading-relaxed mb-7">
+          "God has proved Himself through it all and this day is a testament of His goodness, grace and mercy."
+        </blockquote>
+
+        {/* Nav links */}
+        <nav className="flex flex-wrap justify-center gap-x-6 gap-y-1 mb-7">
+          {[
+            ['#hero','Home'],['#love-story','Our Story'],['#countdown','Countdown'],
+            ['#event','Event'],['#location','Venue'],['#gallery','Gallery'],['#gifts','Gifts']
+          ].map(([h,l]) => (
+            <a key={h} href={h}
+              className="font-body text-[0.68rem] tracking-[0.18em] uppercase text-cream/35 hover:text-gold transition-colors">
+              {l}
+            </a>
+          ))}
+        </nav>
+
+        <div className="flex items-center justify-center gap-2 text-gold/25 mb-5 tracking-widest text-sm">
+          <span>❀</span><span>✿</span><span>❀</span>
+        </div>
+
+        <p className="font-body text-[0.68rem] text-cream/20 tracking-widest">
+          Made with 💛 for Timothy &amp; Hope · 2026
+        </p>
+      </div>
+    </footer>
+  )
+}
