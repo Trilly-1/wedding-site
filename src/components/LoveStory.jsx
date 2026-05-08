@@ -25,7 +25,7 @@ const chapters = [
     num: '03',
     tag: 'Her words',
     title: 'He Became My Sunshine',
-    body: `I (Hope) never thought that anything would amount from Timothy and I. All it was supposed to be was a friendship — but as you may have it, "the stone that was rejected, became the chief cornerstone" 😅. I got to meet a guy who expressed his love for me in ways I didn't know possible. He was easy to talk to and I didn't have to pretend when we were together. I looked forward to spending time with him day after day.`,
+    body: `I (Hope) never thought that anything would amount from Timothy and me. All it was supposed to be was a friendship, but with time, it slowly turned into something truly special. I got to meet a guy who expressed his love for me in ways I did not know possible. He was easy to talk to, and I did not have to pretend when we were together. I looked forward to spending time with him day after day.`,
     img: '/img11.JPG',
     flip: false,
   },
@@ -42,16 +42,23 @@ const chapters = [
 
 export default function LoveStory() {
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true })
-
   const [index, setIndex] = useState(0)
 
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % chapters.length)
-    }, 5000) // 5 seconds
+    }, 120000) // 2 minutes
 
     return () => clearInterval(interval)
   }, [])
+
+  const nextSlide = () => {
+    setIndex((prev) => (prev + 1) % chapters.length)
+  }
+
+  const prevSlide = () => {
+    setIndex((prev) => (prev === 0 ? chapters.length - 1 : prev - 1))
+  }
 
   return (
     <section
@@ -65,30 +72,20 @@ export default function LoveStory() {
         `
       }}
     >
-      {/* Floral decoration */}
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-80 h-80 opacity-[0.04] pointer-events-none">
-        <BigFloral />
-      </div>
+      <div className="max-w-6xl mx-auto px-6">
 
-      <div className="max-w-5xl mx-auto px-6">
-
-        {/* Header */}
-        <div
-          ref={ref}
-          className={`text-center mb-20 reveal ${inView ? 'in-view' : ''}`}
-        >
+        {/* HEADER */}
+        <div ref={ref} className={`text-center mb-20 ${inView ? 'in-view' : ''}`}>
           <p className="font-body text-[0.9rem] tracking-[0.4em] uppercase text-gold mb-2">
             How it all began
           </p>
 
-          <h2
-            className="font-script text-rose-d mb-4"
-            style={{ fontSize: 'clamp(2.8rem, 6vw, 4.5rem)' }}
-          >
+          <h2 className="font-script mb-4"
+            style={{ fontSize: 'clamp(2.8rem, 6vw, 4.5rem)' }}>
             Our Love Story
           </h2>
 
-          <p className="font-display italic text-ink-l mt-4 text-lg max-w-md mx-auto leading-relaxed">
+          <p className="font-display italic text-lg max-w-xl mx-auto leading-relaxed">
             A friendship that bloomed into something far more beautiful than either of us imagined.
           </p>
         </div>
@@ -97,89 +94,113 @@ export default function LoveStory() {
         <div className="relative overflow-hidden">
 
           <div
-            className="flex transition-transform duration-700 ease-in-out"
-            style={{
-              transform: `translateX(-${index * 100}%)`,
-            }}
+            className="flex transition-transform duration-1000 ease-in-out"
+            style={{ transform: `translateX(-${index * 100}%)` }}
           >
+
             {chapters.map((ch, i) => (
               <div key={i} className="min-w-full">
 
-                <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+                <div className="hidden md:grid md:grid-cols-2 gap-14 items-center">
 
-                  {/* IMAGE */}
+                  {/* IMAGE FIXED HEIGHT */}
                   <div className={`relative ${ch.flip ? 'md:order-2' : ''}`}>
-                    <div className="rounded-2xl overflow-hidden shadow-2xl aspect-[4/5]">
+                    <div className="rounded-3xl overflow-hidden shadow-2xl h-[420px] md:h-[520px]">
+
                       <img
                         src={ch.img}
                         alt={ch.title}
-                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                        className="w-full h-full object-cover"
                       />
+
                       <div className="absolute inset-0"
                         style={{
-                          background: 'linear-gradient(to top, rgba(43,26,42,0.15), transparent 50%)'
+                          background: 'linear-gradient(to top, rgba(43,26,42,0.12), transparent 50%)'
                         }}
                       />
                     </div>
 
-                    <div
-                      className="absolute -top-4 -right-4 w-14 h-14 rounded-full flex items-center justify-center font-display font-semibold text-dark text-sm shadow-lg"
+                    <div className="absolute -top-4 -right-4 w-16 h-16 rounded-full flex items-center justify-center font-semibold text-lg shadow-lg"
                       style={{
                         background: 'linear-gradient(135deg, #C9A05A, #E8C880)'
-                      }}
-                    >
+                      }}>
                       {ch.num}
                     </div>
                   </div>
 
                   {/* TEXT */}
                   <div className={ch.flip ? 'md:order-1' : ''}>
-                    <span className="text-4xl">{ch.icon}</span>
+                    <span className="text-5xl">{ch.icon}</span>
 
-                    <span className="ml-3 font-body text-[0.75rem] tracking-[0.3em] uppercase text-gold">
+                    <span className="ml-3 text-[0.82rem] tracking-[0.3em] uppercase text-gold">
                       {ch.tag}
                     </span>
 
-                    <h3
-                      className="font-display font-semibold text-rose-d mt-4 mb-4 leading-snug"
-                      style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.6rem)' }}
-                    >
+                    <h3 className="font-semibold mt-5 mb-5"
+                      style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }}>
                       {ch.title}
                     </h3>
 
-                    <p className="font-display italic text-ink-l leading-[2] text-[1.15rem]">
+                    <p className="italic leading-[2.2] text-[1.18rem]">
                       {ch.body}
                     </p>
                   </div>
+                </div>
 
+                {/* MOBILE (unchanged) */}
+                <div className="md:hidden relative rounded-3xl overflow-hidden min-h-[650px] shadow-2xl">
+
+                  <img
+                    src={ch.img}
+                    alt={ch.title}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+
+                  <div className="absolute inset-0 bg-black/60" />
+
+                  <div className="relative z-10 p-8 flex flex-col justify-end h-full text-white">
+
+                    <div className="w-14 h-14 rounded-full flex items-center justify-center mb-6"
+                      style={{
+                        background: 'linear-gradient(135deg, #C9A05A, #E8C880)'
+                      }}>
+                      {ch.num}
+                    </div>
+
+                    <span className="text-5xl mb-3">{ch.icon}</span>
+
+                    <span className="text-[0.75rem] uppercase text-[#E8C880]">
+                      {ch.tag}
+                    </span>
+
+                    <h3 className="mt-4 mb-5 text-2xl">
+                      {ch.title}
+                    </h3>
+
+                    <p className="leading-[2.1] text-white/90">
+                      {ch.body}
+                    </p>
+                  </div>
                 </div>
 
               </div>
             ))}
           </div>
 
+          {/* ARROWS */}
+          <button onClick={prevSlide}
+            className="absolute left-3 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/80 shadow-lg">
+            ‹
+          </button>
+
+          <button onClick={nextSlide}
+            className="absolute right-3 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/80 shadow-lg">
+            ›
+          </button>
+
         </div>
 
       </div>
     </section>
-  )
-}
-
-function BigFloral() {
-  return (
-    <svg viewBox="0 0 400 400" fill="none" className="w-full h-full">
-      {[0,45,90,135,180,225,270,315].map((deg,i) => (
-        <ellipse
-          key={i}
-          cx={200 + Math.cos(deg * Math.PI / 180) * 80}
-          cy={200 + Math.sin(deg * Math.PI / 180) * 80}
-          rx="40"
-          ry="18"
-          fill="#F2C4CE"
-          transform={`rotate(${deg} ${200 + Math.cos(deg * Math.PI / 180) * 80} ${200 + Math.sin(deg * Math.PI / 180) * 80})`}
-        />
-      ))}
-      <circle cx="200" cy="200" r="24" fill="#C9A05A" />
-    </svg>
   )
 }

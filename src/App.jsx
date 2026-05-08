@@ -36,7 +36,7 @@ export default function App() {
 
       {/* ── #G0discooking watermark — fixed, visible on every page ── */}
       <a
-        href="https://instagram.com/G0discooking"
+        href="https://instagram.com/Godiscooking"
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-4 right-4 z-[9999] flex items-center gap-1.5 rounded-full px-3 py-1.5 text-white/90 hover:text-white transition-all duration-300 hover:scale-105 group"
@@ -57,7 +57,7 @@ export default function App() {
           <circle cx="12" cy="13" r="4"/>
         </svg>
         <span className="font-body tracking-widest" style={{ color: '#E8C880' }}>
-          #G0discooking
+          #Godiscooking
         </span>
       </a>
     </>

@@ -1,45 +1,87 @@
-import { useEffect, useState } from "react";
-
-const imgs = Array.from({ length: 15 }, (_, i) => ({
+const imgs = Array.from({ length: 22 }, (_, i) => ({
   src: `/img${i + 1}.JPG`,
-  alt: `Timothy and Hope — photo ${i + 1}`,
+  alt: `Timothy and Hope — memory ${i + 1}`,
 }));
 
-export default function GallerySlider() {
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % imgs.length);
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  // get 3 visible images
-  const visible = [
-    imgs[index % imgs.length],
-    imgs[(index + 1) % imgs.length],
-    imgs[(index + 2) % imgs.length],
-  ];
-
+export default function MemoriesGallery() {
   return (
-    <div className="overflow-hidden w-full">
-      {/* sliding track */}
-      <div className="flex gap-4 transition-transform duration-700 ease-in-out">
-        {visible.map((img, i) => (
-          <div
-            key={i}
-            className="w-1/3 aspect-square overflow-hidden rounded-xl shadow-lg flex-shrink-0"
-          >
-            <img
-              src={img.src}
-              alt={img.alt}
-              className="w-full h-full object-cover transform transition-transform duration-700 hover:scale-110"
-            />
-          </div>
-        ))}
+    <section className="w-full py-20 bg-[#f7f1ec] overflow-hidden">
+
+      {/* HEADING */}
+      <div className="text-center mb-12 px-6">
+        <p className="font-body text-[0.75rem] tracking-[0.35em] uppercase text-gold/80">
+          Moments we will always carry
+        </p>
+
+        <h2
+          className="font-script text-rose-d mt-3 mb-3"
+          style={{ fontSize: "clamp(2.2rem, 5vw, 3.5rem)" }}
+        >
+          Our Memories in Frames
+        </h2>
+
+        <p className="font-display italic text-ink-l max-w-xl mx-auto leading-relaxed text-[1.05rem]">
+          A collection of quiet smiles, shared laughter, and beautiful days that built our story.
+        </p>
       </div>
-    </div>
+
+      {/* TOP ROW */}
+      <div className="overflow-hidden w-full">
+        <div className="flex w-max animate-row-left gap-4">
+          {[...imgs, ...imgs].map((img, i) => (
+            <div
+              key={i}
+              className="w-52 h-40 flex-shrink-0 rounded-xl overflow-hidden shadow-lg"
+            >
+              <img
+                src={img.src}
+                alt={img.alt}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* BOTTOM ROW */}
+      <div className="overflow-hidden w-full mt-6">
+        <div className="flex w-max animate-row-right gap-4">
+          {[...imgs, ...imgs].map((img, i) => (
+            <div
+              key={i}
+              className="w-52 h-40 flex-shrink-0 rounded-xl overflow-hidden shadow-lg"
+            >
+              <img
+                src={img.src}
+                alt={img.alt}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* ANIMATION */}
+      <style>{`
+        @keyframes row-left {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+
+        @keyframes row-right {
+          0% { transform: translateX(-50%); }
+          100% { transform: translateX(0); }
+        }
+
+        .animate-row-left {
+          animation: row-left 60s linear infinite;
+        }
+
+        .animate-row-right {
+          animation: row-right 60s linear infinite;
+        }
+      `}</style>
+
+    </section>
   );
 }

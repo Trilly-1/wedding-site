@@ -179,3 +179,24 @@
   pointer-events: none;
   transition: opacity 0.85s ease, transform 0.85s ease;
 }
+.weds-glitter {
+  position: relative;
+  display: inline-block;
+  font-size: 2.5rem;
+  letter-spacing: 0.30em;
+  font-weight: 400;
+  text-shadow: 0 4px 18px rgba(92, 71, 3, 0.6);
+
+  animation: floatWeds 3.5s ease-in-out infinite;
+}
+
+/* FLOAT */
+@keyframes floatWeds {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+nav {
+  box-shadow: 0 1px 20px rgba(0,0,0,0.15);
+}
+
