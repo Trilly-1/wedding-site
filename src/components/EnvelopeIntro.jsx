@@ -9,21 +9,21 @@ export default function EnvelopeIntro({ onEnter }) {
     // Add animations to the document head
     const style = document.createElement('style')
     style.textContent = `
-      @keyframes moveLeftToCenter {
+      @keyframes moveLeftToHug {
         0% {
           transform: translateX(0) translateY(0) scale(1);
         }
         100% {
-          transform: translateX(120px) translateY(0) scale(1);
+          transform: translateX(140px) translateY(0) scale(1) rotateZ(-5deg);
         }
       }
 
-      @keyframes moveRightToCenter {
+      @keyframes moveRightToHug {
         0% {
           transform: translateX(0) translateY(0) scale(1);
         }
         100% {
-          transform: translateX(-120px) translateY(0) scale(1);
+          transform: translateX(-140px) translateY(0) scale(1) rotateZ(5deg);
         }
       }
 
@@ -129,13 +129,13 @@ export default function EnvelopeIntro({ onEnter }) {
         }
       }
 
-      .animate-move-to-center-left {
-        animation: moveLeftToCenter 1.5s ease-in-out forwards;
+      .animate-move-left-to-hug {
+        animation: moveLeftToHug 1.5s ease-in-out forwards;
         animation-delay: 2.5s;
       }
 
-      .animate-move-to-center-right {
-        animation: moveRightToCenter 1.5s ease-in-out forwards;
+      .animate-move-right-to-hug {
+        animation: moveRightToHug 1.5s ease-in-out forwards;
         animation-delay: 2.5s;
       }
 
@@ -250,8 +250,8 @@ export default function EnvelopeIntro({ onEnter }) {
       {/* ✨ ANIMATED AVATARS - Auto-play sequence ✨ */}
       {stage === 'idle' && (
         <div className="absolute inset-0 z-40 flex items-center justify-center pointer-events-none" style={{ opacity: leaving ? 0 : 1, transition: 'opacity 0.7s ease' }}>
-          {/* LEFT AVATAR - Timothy (TALL) */}
-          <div className="absolute animate-fly-in-left animate-move-to-center-left animate-dive-in-left hidden md:block" style={{ animationDelay: '0s' }}>
+          {/* LEFT AVATAR - Timothy (TALL) - Starts on LEFT of envelope */}
+          <div className="absolute animate-fly-in-left animate-move-left-to-hug hidden md:block" style={{ animationDelay: '0s', left: '-200px' }}>
             <div className="relative w-64 h-64 mx-auto animate-float">
               <div className="absolute inset-0 rounded-full animate-pulse-glow" />
               <div
@@ -309,8 +309,8 @@ export default function EnvelopeIntro({ onEnter }) {
             </div>
           </div>
 
-          {/* RIGHT AVATAR - Hope (SHORT) */}
-          <div className="absolute animate-fly-in-right animate-move-to-center-right animate-dive-in-right hidden md:block" style={{ animationDelay: '0.2s' }}>
+          {/* RIGHT AVATAR - Hope (SHORT) - Starts on RIGHT of envelope */}
+          <div className="absolute animate-fly-in-right animate-move-right-to-hug hidden md:block" style={{ animationDelay: '0.2s', right: '-200px' }}>
             <div className="relative w-56 h-56 mx-auto animate-float" style={{ animationDelay: '0.3s' }}>
               <div className="absolute inset-0 rounded-full animate-pulse-glow" />
               <div
