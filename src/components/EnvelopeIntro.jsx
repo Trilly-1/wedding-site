@@ -3,18 +3,27 @@ import { useState, useEffect } from 'react'
 export default function EnvelopeIntro({ onEnter }) {
   const [stage,   setStage]   = useState('idle')
   const [leaving, setLeaving] = useState(false)
+  const [showFireworks, setShowFireworks] = useState(false)
 
   useEffect(() => {
     // Add animations to the document head
     const style = document.createElement('style')
     style.textContent = `
+      @keyframes flyInFromLeft {
+        0% {
+          opacity: 0;
+          transform: translateX(-150px) translateY(-50px) scale(0.5);
+        }
+        100% {
+          opacity: 1;
+          transform: translateX(0) translateY(0) scale(1);
+        }
+      }
+
       @keyframes flyInFromRight {
         0% {
           opacity: 0;
           transform: translateX(150px) translateY(-50px) scale(0.5);
-        }
-        50% {
-          opacity: 1;
         }
         100% {
           opacity: 1;
@@ -31,17 +40,6 @@ export default function EnvelopeIntro({ onEnter }) {
         }
       }
 
-      @keyframes shimmer {
-        0%, 100% {
-          background-position: 200% center;
-          box-shadow: 0 0 20px rgba(201, 160, 90, 0.4);
-        }
-        50% {
-          background-position: -200% center;
-          box-shadow: 0 0 40px rgba(201, 160, 90, 0.8), inset 0 0 20px rgba(255, 255, 255, 0.2);
-        }
-      }
-
       @keyframes pulse-glow {
         0%, 100% {
           filter: drop-shadow(0 0 10px rgba(201, 160, 90, 0.5));
@@ -51,16 +49,51 @@ export default function EnvelopeIntro({ onEnter }) {
         }
       }
 
-      @keyframes bounce-gentle {
+      @keyframes shine {
         0%, 100% {
-          transform: translateY(0);
+          text-shadow: 0 0 10px rgba(201, 160, 90, 0.5), 0 0 20px rgba(255, 215, 0, 0.3);
         }
         50% {
-          transform: translateY(-10px);
+          text-shadow: 0 0 20px rgba(201, 160, 90, 1), 0 0 40px rgba(255, 215, 0, 0.6), inset 0 0 10px rgba(255, 255, 255, 0.2);
         }
       }
 
-      .animate-fly-in {
+      @keyframes pulse-scale {
+        0%, 100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+      }
+
+      @keyframes fireworks {
+        0% {
+          opacity: 1;
+          transform: translate(0, 0) scale(1);
+        }
+        100% {
+          opacity: 0;
+          transform: translate(var(--tx), var(--ty)) scale(0);
+        }
+      }
+
+      @keyframes fall-hearts {
+        0% {
+          opacity: 1;
+          transform: translateY(-100px) rotate(0deg);
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(100vh) rotate(360deg);
+        }
+      }
+
+      .animate-fly-in-left {
+        animation: flyInFromLeft 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      }
+
+      .animate-fly-in-right {
         animation: flyInFromRight 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
       }
 
@@ -68,18 +101,26 @@ export default function EnvelopeIntro({ onEnter }) {
         animation: float 3s ease-in-out infinite;
       }
 
-      .animate-shimmer-card {
-        animation: shimmer 2.5s linear infinite;
-        background: linear-gradient(90deg, rgba(201, 160, 90, 0.3), rgba(255, 255, 255, 0.5), rgba(201, 160, 90, 0.3));
-        background-size: 200% 100%;
-      }
-
       .animate-pulse-glow {
         animation: pulse-glow 2s ease-in-out infinite;
       }
 
-      .animate-bounce-gentle {
-        animation: bounce-gentle 2s ease-in-out infinite;
+      .animate-shine {
+        animation: shine 2s ease-in-out infinite;
+      }
+
+      .animate-pulse-scale {
+        animation: pulse-scale 2s ease-in-out infinite;
+      }
+
+      .firework {
+        animation: fireworks 1.5s ease-out forwards;
+        pointer-events: none;
+      }
+
+      .fall-heart {
+        animation: fall-hearts 3s ease-in forwards;
+        pointer-events: none;
       }
     `
     document.head.appendChild(style)
@@ -88,6 +129,32 @@ export default function EnvelopeIntro({ onEnter }) {
 
   const handleEnvelopeClick = () => {
     if (stage !== 'idle') return
+    setShowFireworks(true)
+    setStage('flap-opening')
+    setTimeout(() => setStage('cards-rising'), 950)
+  }
+
+  const createFireworks = () => {
+    const particles = []
+    const colors = ['#FF69B4', '#FFD700', '#FF6B6B', '#FF1493', '#FFB6C1']
+    
+    for (let i = 0; i < 30; i++) {
+      const angle = (i / 30) * Math.PI * 2
+      const velocity = 4 + Math.random() * 6
+      particles.push({
+        id: i,
+        x: Math.cos(angle) * velocity * 10,
+        y: Math.sin(angle) * velocity * 10,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        delay: Math.random() * 0.2
+      })
+    }
+    return particles
+  }
+
+  const handleClickToOpen = () => {
+    if (stage !== 'idle') return
+    setShowFireworks(true)
     setStage('flap-opening')
     setTimeout(() => setStage('cards-rising'), 950)
   }
@@ -124,108 +191,149 @@ export default function EnvelopeIntro({ onEnter }) {
         ))}
       </div>
 
-      {/* ✨ ANIMATED AVATAR - Left Side */}
+      {/* ✨ ANIMATED AVATARS & CENTER CLICK AREA - Only on idle ✨ */}
       {stage === 'idle' && (
-        <div className="absolute left-0 top-1/2 transform -translate-y-1/2 z-30 animate-fly-in hidden md:block">
-          {/* Cartoon Avatar */}
-          <div className="relative w-48 h-48 mx-auto animate-float ml-6 lg:ml-12">
-            {/* Avatar Circle with Glow */}
-            <div className="absolute inset-0 rounded-full animate-pulse-glow" />
-            <div
-              className="w-full h-full rounded-full flex items-center justify-center relative overflow-hidden"
+        <div className="absolute inset-0 z-40 flex items-center justify-center pointer-events-none">
+          {/* LEFT AVATAR - Timothy */}
+          <div className="absolute left-8 lg:left-16 animate-fly-in-left hidden md:block" style={{ animationDelay: '0s' }}>
+            <div className="relative w-48 h-48 mx-auto animate-float">
+              <div className="absolute inset-0 rounded-full animate-pulse-glow" />
+              <div
+                className="w-full h-full rounded-full flex items-center justify-center relative overflow-hidden"
+                style={{
+                  background: 'linear-gradient(135deg, #c9a05a 0%, #e5d4b8 50%, #c9a05a 100%)',
+                  boxShadow: '0 20px 60px rgba(201, 160, 90, 0.4)',
+                  border: '4px solid rgba(255, 255, 255, 0.3)',
+                }}
+              >
+                {/* Timothy - Male Avatar */}
+                <svg className="w-5/6 h-5/6" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="100" cy="80" r="50" fill="#FFD7A8" stroke="#8B6F47" strokeWidth="2" />
+                  <circle cx="85" cy="70" r="6" fill="#000" />
+                  <circle cx="87" cy="68" r="2" fill="#FFF" />
+                  <circle cx="115" cy="70" r="6" fill="#000" />
+                  <circle cx="117" cy="68" r="2" fill="#FFF" />
+                  <path d="M 85 95 Q 100 110 115 95" stroke="#8B6F47" strokeWidth="3" fill="none" strokeLinecap="round" />
+                  <ellipse cx="100" cy="150" rx="35" ry="40" fill="#4A5F8F" stroke="#8B6F47" strokeWidth="2" />
+                  <path d="M 95 145 L 100 140 L 105 145 L 100 155 Z" fill="#FF69B4" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          {/* CENTER - CLICK TO OPEN TEXT (Shining & Prominent) */}
+          <div 
+            className="relative z-50 text-center cursor-pointer pointer-events-auto group"
+            onClick={handleClickToOpen}
+          >
+            {/* Shining "Click to open" text */}
+            <p 
+              className="text-4xl md:text-5xl lg:text-6xl font-script text-gold animate-shine animate-pulse-scale font-bold tracking-wide"
               style={{
-                background: 'linear-gradient(135deg, #c9a05a 0%, #e5d4b8 50%, #c9a05a 100%)',
-                boxShadow: '0 20px 60px rgba(201, 160, 90, 0.4)',
-                border: '4px solid rgba(255, 255, 255, 0.3)',
+                textShadow: '0 0 20px rgba(201, 160, 90, 0.8), 0 0 40px rgba(255, 215, 0, 0.5)',
+                letterSpacing: '0.05em'
               }}
             >
-              {/* Cartoon Character - SVG Based */}
-              <svg className="w-5/6 h-5/6" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                {/* Head */}
-                <circle cx="100" cy="80" r="50" fill="#FFD7A8" stroke="#8B6F47" strokeWidth="2" />
+              Click to open
+            </p>
 
-                {/* Left Eye */}
-                <circle cx="85" cy="70" r="6" fill="#000" />
-                <circle cx="87" cy="68" r="2" fill="#FFF" />
-
-                {/* Right Eye */}
-                <circle cx="115" cy="70" r="6" fill="#000" />
-                <circle cx="117" cy="68" r="2" fill="#FFF" />
-
-                {/* Smile */}
-                <path d="M 85 95 Q 100 110 115 95" stroke="#8B6F47" strokeWidth="3" fill="none" strokeLinecap="round" />
-
-                {/* Body */}
-                <ellipse cx="100" cy="150" rx="35" ry="40" fill="#E8B4D4" stroke="#8B6F47" strokeWidth="2" />
-
-                {/* Heart on chest */}
-                <path d="M 95 145 L 100 140 L 105 145 L 100 155 Z" fill="#FF69B4" />
-              </svg>
+            {/* Decorative line */}
+            <div className="flex items-center justify-center gap-4 my-4">
+              <div className="h-0.5 w-12 bg-gradient-to-r from-transparent to-gold" />
+              <span className="text-2xl text-gold">✨</span>
+              <div className="h-0.5 w-12 bg-gradient-to-l from-transparent to-gold" />
             </div>
 
-            {/* Sparkles around avatar */}
-            {[...Array(4)].map((_, i) => (
+            {/* Timothy & Hope */}
+            <div className="mt-4 space-y-0">
+              <h2 className="font-script text-3xl md:text-4xl text-cream leading-none">Timothy</h2>
+              <p className="font-display italic text-xl text-gold my-1">&amp;</p>
+              <h2 className="font-script text-3xl md:text-4xl text-cream leading-none">Hope</h2>
+            </div>
+
+            {/* Hover effect - glow pulse */}
+            <div className="absolute inset-0 rounded-full blur-2xl opacity-0 group-hover:opacity-50 transition-opacity duration-300"
+              style={{
+                background: 'radial-gradient(circle, rgba(201, 160, 90, 0.5), transparent)',
+                zIndex: -1
+              }}
+            />
+          </div>
+
+          {/* RIGHT AVATAR - Hope */}
+          <div className="absolute right-8 lg:right-16 animate-fly-in-right hidden md:block" style={{ animationDelay: '0.2s' }}>
+            <div className="relative w-48 h-48 mx-auto animate-float" style={{ animationDelay: '0.3s' }}>
+              <div className="absolute inset-0 rounded-full animate-pulse-glow" />
               <div
-                key={i}
-                className="absolute w-3 h-3 rounded-full animate-pulse-glow"
+                className="w-full h-full rounded-full flex items-center justify-center relative overflow-hidden"
                 style={{
-                  background: '#c9a05a',
-                  top: `${20 + i * 20}%`,
-                  left: i % 2 === 0 ? '-20px' : '100%',
-                  opacity: 0.8,
-                  animation: `pulse-glow 2s ease-in-out infinite`,
-                  animationDelay: `${i * 0.2}s`,
+                  background: 'linear-gradient(135deg, #FFB6D9 0%, #FFD7E8 50%, #FFB6D9 100%)',
+                  boxShadow: '0 20px 60px rgba(255, 107, 177, 0.4)',
+                  border: '4px solid rgba(255, 255, 255, 0.3)',
                 }}
-              />
-            ))}
+              >
+                {/* Hope - Female Avatar */}
+                <svg className="w-5/6 h-5/6" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="100" cy="80" r="50" fill="#FFE0D8" stroke="#C08B7F" strokeWidth="2" />
+                  {/* Hair */}
+                  <path d="M 50 80 Q 50 30, 100 30 Q 150 30, 150 80" fill="#8B4513" />
+                  <circle cx="85" cy="70" r="6" fill="#000" />
+                  <circle cx="87" cy="68" r="2" fill="#FFF" />
+                  <circle cx="115" cy="70" r="6" fill="#000" />
+                  <circle cx="117" cy="68" r="2" fill="#FFF" />
+                  <path d="M 80 90 Q 100 100 120 90" stroke="#C08B7F" strokeWidth="2" fill="none" strokeLinecap="round" />
+                  {/* Dress */}
+                  <path d="M 70 130 Q 100 155 130 130 L 125 180 Q 100 185 75 180 Z" fill="#FFB6D9" stroke="#C08B7F" strokeWidth="2" />
+                  {/* Heart on dress */}
+                  <path d="M 95 150 L 100 145 L 105 150 L 100 160 Z" fill="#FF1493" />
+                </svg>
+              </div>
+            </div>
           </div>
         </div>
       )}
 
-      {/* ✨ SHINING CLICK CARD - Right Side */}
-      {stage === 'idle' && (
-        <div
-          className="absolute right-0 top-1/2 transform -translate-y-1/2 z-30 animate-fly-in hidden md:block mr-6 lg:mr-12 cursor-pointer group"
-          style={{ animationDelay: '0.2s' }}
-        >
-          <div
-            className="animate-shimmer-card rounded-3xl px-8 py-6 border-2 border-gold/60 backdrop-blur-lg transform transition-all duration-300 group-hover:scale-110 group-hover:-rotate-3 animate-bounce-gentle"
-            style={{
-              background: 'linear-gradient(135deg, rgba(201, 160, 90, 0.2), rgba(255, 255, 255, 0.1), rgba(201, 160, 90, 0.2))',
-              boxShadow: '0 10px 40px rgba(201, 160, 90, 0.3)',
-            }}
-          >
-            {/* Sparkles Text */}
-            <div className="text-center">
-              <p className="text-base text-gold/80 tracking-widest mb-2">✨ ✨ ✨</p>
-              <p className="text-2xl font-script text-cream font-bold drop-shadow-lg">
-                Click to open
-              </p>
-              <p className="text-sm text-cream/70 tracking-widest mt-2">the envelope</p>
-              <p className="text-base text-gold/80 tracking-widest mt-2">✨ ✨ ✨</p>
+      {/* ✨ FIREWORKS & FALLING HEARTS - Show on click ✨ */}
+      {showFireworks && stage !== 'idle' && (
+        <>
+          {/* Fireworks particles from center */}
+          {createFireworks().map((particle) => (
+            <div
+              key={`firework-${particle.id}`}
+              className="fixed firework"
+              style={{
+                left: '50%',
+                top: '50%',
+                width: '12px',
+                height: '12px',
+                borderRadius: '50%',
+                backgroundColor: particle.color,
+                '--tx': `${particle.x}px`,
+                '--ty': `${particle.y}px`,
+                animationDelay: `${particle.delay}s`,
+                boxShadow: `0 0 10px ${particle.color}, 0 0 20px ${particle.color}`,
+                pointerEvents: 'none'
+              }}
+            />
+          ))}
+
+          {/* Falling hearts */}
+          {[...Array(25)].map((_, i) => (
+            <div
+              key={`heart-${i}`}
+              className="fixed fall-heart text-3xl"
+              style={{
+                left: `${10 + Math.random() * 80}%`,
+                top: '10%',
+                animation: `fall-hearts ${2 + Math.random() * 1.5}s ease-in forwards`,
+                animationDelay: `${i * 0.1}s`,
+                pointerEvents: 'none',
+              }}
+            >
+              ❤️
             </div>
-
-            {/* Animated dots/stars inside card */}
-            {[...Array(6)].map((_, i) => (
-              <div
-                key={i}
-                className="absolute w-1.5 h-1.5 rounded-full bg-gold/60 animate-pulse-glow"
-                style={{
-                  top: `${15 + i * 15}%`,
-                  left: `${10 + i * 15}%`,
-                  opacity: 0.6,
-                  animation: `pulse-glow 1.5s ease-in-out infinite`,
-                  animationDelay: `${i * 0.15}s`,
-                }}
-              />
-            ))}
-          </div>
-
-          {/* Arrow indicator */}
-          <div className="text-center mt-4 animate-bounce-gentle">
-            <p className="text-gold/60 text-xl">⬅️</p>
-          </div>
-        </div>
+          ))}
+        </>
       )}
 
       {/* Top tagline */}
