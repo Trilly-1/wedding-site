@@ -237,20 +237,6 @@ export default function EnvelopeIntro({ onEnter }) {
               Click to open
             </p>
 
-            {/* Decorative line */}
-            <div className="flex items-center justify-center gap-4 my-4">
-              <div className="h-0.5 w-12 bg-gradient-to-r from-transparent to-gold" />
-              <span className="text-2xl text-gold">✨</span>
-              <div className="h-0.5 w-12 bg-gradient-to-l from-transparent to-gold" />
-            </div>
-
-            {/* Timothy & Hope */}
-            <div className="mt-4 space-y-0">
-              <h2 className="font-script text-3xl md:text-4xl text-cream leading-none">Timothy</h2>
-              <p className="font-display italic text-xl text-gold my-1">&amp;</p>
-              <h2 className="font-script text-3xl md:text-4xl text-cream leading-none">Hope</h2>
-            </div>
-
             {/* Hover effect - glow pulse */}
             <div className="absolute inset-0 rounded-full blur-2xl opacity-0 group-hover:opacity-50 transition-opacity duration-300"
               style={{
@@ -468,6 +454,13 @@ export default function EnvelopeIntro({ onEnter }) {
             )}
           </div>
         </div>
+      </div>
+
+      {/* Bottom name label */}
+      <div className={`mt-16 flex items-center gap-3 transition-opacity duration-500 ${flapOpen ? 'opacity-0' : 'opacity-100'}`}>
+        <span className="font-script text-[2rem] text-cream/80">Timothy</span>
+        <span className="font-display italic text-[1.3rem] text-gold/70">&amp;</span>
+        <span className="font-script text-[2rem] text-cream/80">Hope</span>
       </div>
     </div>
   )
