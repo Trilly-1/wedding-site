@@ -9,6 +9,42 @@ export default function EnvelopeIntro({ onEnter }) {
     // Add animations to the document head
     const style = document.createElement('style')
     style.textContent = `
+      @keyframes moveLeftToCenter {
+        0% {
+          transform: translateX(0) translateY(0) scale(1);
+        }
+        100% {
+          transform: translateX(120px) translateY(0) scale(1);
+        }
+      }
+
+      @keyframes moveRightToCenter {
+        0% {
+          transform: translateX(0) translateY(0) scale(1);
+        }
+        100% {
+          transform: translateX(-120px) translateY(0) scale(1);
+        }
+      }
+
+      @keyframes clap-left {
+        0%, 100% {
+          transform: rotateZ(0deg);
+        }
+        50% {
+          transform: rotateZ(-30deg);
+        }
+      }
+
+      @keyframes clap-right {
+        0%, 100% {
+          transform: rotateZ(0deg);
+        }
+        50% {
+          transform: rotateZ(30deg);
+        }
+      }
+
       @keyframes flyInFromLeft {
         0% {
           opacity: 0;
@@ -89,6 +125,26 @@ export default function EnvelopeIntro({ onEnter }) {
         }
       }
 
+      .animate-move-to-center-left {
+        animation: moveLeftToCenter 1.5s ease-in-out forwards;
+        animation-delay: 2.5s;
+      }
+
+      .animate-move-to-center-right {
+        animation: moveRightToCenter 1.5s ease-in-out forwards;
+        animation-delay: 2.5s;
+      }
+
+      .animate-clap-left {
+        animation: clap-left 0.6s ease-in-out forwards;
+        animation-delay: 4s;
+      }
+
+      .animate-clap-right {
+        animation: clap-right 0.6s ease-in-out forwards;
+        animation-delay: 4s;
+      }
+
       .animate-fly-in-left {
         animation: flyInFromLeft 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
       }
@@ -127,32 +183,27 @@ export default function EnvelopeIntro({ onEnter }) {
     return () => style.remove()
   }, [])
 
-  const handleEnvelopeClick = () => {
-    if (stage !== 'idle') return
-    setShowFireworks(true)
-    setStage('flap-opening')
-    setTimeout(() => setStage('cards-rising'), 950)
-  }
+  // Auto-play sequence timer
+  useEffect(() => {
+    if (stage === 'idle') {
+      const timer1 = setTimeout(() => {
+        // After avatars move and clap (4.6s), trigger envelope opening
+        setShowFireworks(true)
+        setStage('flap-opening')
+      }, 4600)
 
-  const createFireworks = () => {
-    const particles = []
-    const colors = ['#FF69B4', '#FFD700', '#FF6B6B', '#FF1493', '#FFB6C1']
-    
-    for (let i = 0; i < 30; i++) {
-      const angle = (i / 30) * Math.PI * 2
-      const velocity = 4 + Math.random() * 6
-      particles.push({
-        id: i,
-        x: Math.cos(angle) * velocity * 10,
-        y: Math.sin(angle) * velocity * 10,
-        color: colors[Math.floor(Math.random() * colors.length)],
-        delay: Math.random() * 0.2
-      })
+      const timer2 = setTimeout(() => {
+        setStage('cards-rising')
+      }, 5550)
+
+      return () => {
+        clearTimeout(timer1)
+        clearTimeout(timer2)
+      }
     }
-    return particles
-  }
+  }, [stage])
 
-  const handleClickToOpen = () => {
+  const handleEnvelopeClick = () => {
     if (stage !== 'idle') return
     setShowFireworks(true)
     setStage('flap-opening')
@@ -191,11 +242,11 @@ export default function EnvelopeIntro({ onEnter }) {
         ))}
       </div>
 
-      {/* ✨ ANIMATED AVATARS & CENTER CLICK AREA - Only on idle ✨ */}
+      {/* ✨ ANIMATED AVATARS - Auto-play sequence ✨ */}
       {stage === 'idle' && (
         <div className="absolute inset-0 z-40 flex items-center justify-center pointer-events-none">
           {/* LEFT AVATAR - Timothy */}
-          <div className="absolute left-8 lg:left-16 animate-fly-in-left hidden md:block" style={{ animationDelay: '0s' }}>
+          <div className="absolute animate-fly-in-left animate-move-to-center-left animate-clap-left hidden md:block" style={{ animationDelay: '0s' }}>
             <div className="relative w-48 h-48 mx-auto animate-float">
               <div className="absolute inset-0 rounded-full animate-pulse-glow" />
               <div
@@ -221,33 +272,8 @@ export default function EnvelopeIntro({ onEnter }) {
             </div>
           </div>
 
-          {/* CENTER - CLICK TO OPEN TEXT (Shining & Prominent) */}
-          <div 
-            className="relative z-50 text-center cursor-pointer pointer-events-auto group"
-            onClick={handleClickToOpen}
-          >
-            {/* Shining "Click to open" text */}
-            <p 
-              className="text-4xl md:text-5xl lg:text-6xl font-script text-gold animate-shine animate-pulse-scale font-bold tracking-wide"
-              style={{
-                textShadow: '0 0 20px rgba(201, 160, 90, 0.8), 0 0 40px rgba(255, 215, 0, 0.5)',
-                letterSpacing: '0.05em'
-              }}
-            >
-              Click to open
-            </p>
-
-            {/* Hover effect - glow pulse */}
-            <div className="absolute inset-0 rounded-full blur-2xl opacity-0 group-hover:opacity-50 transition-opacity duration-300"
-              style={{
-                background: 'radial-gradient(circle, rgba(201, 160, 90, 0.5), transparent)',
-                zIndex: -1
-              }}
-            />
-          </div>
-
           {/* RIGHT AVATAR - Hope */}
-          <div className="absolute right-8 lg:right-16 animate-fly-in-right hidden md:block" style={{ animationDelay: '0.2s' }}>
+          <div className="absolute animate-fly-in-right animate-move-to-center-right animate-clap-right hidden md:block" style={{ animationDelay: '0.2s' }}>
             <div className="relative w-48 h-48 mx-auto animate-float" style={{ animationDelay: '0.3s' }}>
               <div className="absolute inset-0 rounded-full animate-pulse-glow" />
               <div
@@ -279,30 +305,9 @@ export default function EnvelopeIntro({ onEnter }) {
         </div>
       )}
 
-      {/* ✨ FIREWORKS & FALLING HEARTS - Show on click ✨ */}
+      {/* ✨ FALLING HEARTS - Show on clap ✨ */}
       {showFireworks && stage !== 'idle' && (
         <>
-          {/* Fireworks particles from center */}
-          {createFireworks().map((particle) => (
-            <div
-              key={`firework-${particle.id}`}
-              className="fixed firework"
-              style={{
-                left: '50%',
-                top: '50%',
-                width: '12px',
-                height: '12px',
-                borderRadius: '50%',
-                backgroundColor: particle.color,
-                '--tx': `${particle.x}px`,
-                '--ty': `${particle.y}px`,
-                animationDelay: `${particle.delay}s`,
-                boxShadow: `0 0 10px ${particle.color}, 0 0 20px ${particle.color}`,
-                pointerEvents: 'none'
-              }}
-            />
-          ))}
-
           {/* Falling hearts */}
           {[...Array(25)].map((_, i) => (
             <div
