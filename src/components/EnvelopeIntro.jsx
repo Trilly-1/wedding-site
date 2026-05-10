@@ -469,13 +469,6 @@ export default function EnvelopeIntro({ onEnter }) {
           </div>
         </div>
       </div>
-
-      {/* Bottom name label */}
-      <div className={`mt-16 flex items-center gap-3 transition-opacity duration-500 ${flapOpen ? 'opacity-0' : 'opacity-100'}`}>
-        <span className="font-script text-[2rem] text-cream/80">Timothy</span>
-        <span className="font-display italic text-[1.3rem] text-gold/70">&amp;</span>
-        <span className="font-script text-[2rem] text-cream/80">Hope</span>
-      </div>
     </div>
   )
 }
