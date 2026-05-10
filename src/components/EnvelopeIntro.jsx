@@ -250,9 +250,9 @@ export default function EnvelopeIntro({ onEnter }) {
       {/* ✨ ANIMATED AVATARS - Auto-play sequence ✨ */}
       {stage === 'idle' && (
         <div className="absolute inset-0 z-40 flex items-center justify-center pointer-events-none" style={{ opacity: leaving ? 0 : 1, transition: 'opacity 0.7s ease' }}>
-          {/* LEFT AVATAR - Timothy */}
+          {/* LEFT AVATAR - Timothy (TALL) */}
           <div className="absolute animate-fly-in-left animate-move-to-center-left animate-dive-in-left hidden md:block" style={{ animationDelay: '0s' }}>
-            <div className="relative w-48 h-48 mx-auto animate-float">
+            <div className="relative w-64 h-64 mx-auto animate-float">
               <div className="absolute inset-0 rounded-full animate-pulse-glow" />
               <div
                 className="w-full h-full rounded-full flex items-center justify-center relative overflow-hidden"
@@ -262,24 +262,56 @@ export default function EnvelopeIntro({ onEnter }) {
                   border: '4px solid rgba(255, 255, 255, 0.3)',
                 }}
               >
-                {/* Timothy - Male Avatar */}
-                <svg className="w-5/6 h-5/6" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="100" cy="80" r="50" fill="#FFD7A8" stroke="#8B6F47" strokeWidth="2" />
-                  <circle cx="85" cy="70" r="6" fill="#000" />
-                  <circle cx="87" cy="68" r="2" fill="#FFF" />
-                  <circle cx="115" cy="70" r="6" fill="#000" />
-                  <circle cx="117" cy="68" r="2" fill="#FFF" />
-                  <path d="M 85 95 Q 100 110 115 95" stroke="#8B6F47" strokeWidth="3" fill="none" strokeLinecap="round" />
-                  <ellipse cx="100" cy="150" rx="35" ry="40" fill="#4A5F8F" stroke="#8B6F47" strokeWidth="2" />
-                  <path d="M 95 145 L 100 140 L 105 145 L 100 155 Z" fill="#FF69B4" />
+                {/* Timothy - Male Avatar - TALL */}
+                <svg className="w-5/6 h-5/6" viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg">
+                  {/* Head */}
+                  <circle cx="100" cy="50" r="35" fill="#FFD7A8" stroke="#8B6F47" strokeWidth="2.5" />
+                  {/* Short Hair - masculine */}
+                  <ellipse cx="100" cy="25" rx="38" ry="28" fill="#654321" />
+                  <path d="M 62 35 Q 60 55 70 60" fill="#654321" />
+                  <path d="M 138 35 Q 140 55 130 60" fill="#654321" />
+                  {/* Eyes - confident look */}
+                  <circle cx="85" cy="45" r="4.5" fill="#000" />
+                  <circle cx="86" cy="43" r="1.5" fill="#FFF" />
+                  <circle cx="115" cy="45" r="4.5" fill="#000" />
+                  <circle cx="116" cy="43" r="1.5" fill="#FFF" />
+                  {/* Eyebrows - masculine */}
+                  <path d="M 78 38 Q 85 35 92 37" stroke="#654321" strokeWidth="2" fill="none" strokeLinecap="round" />
+                  <path d="M 108 37 Q 115 35 122 38" stroke="#654321" strokeWidth="2" fill="none" strokeLinecap="round" />
+                  {/* Nose */}
+                  <path d="M 100 45 L 100 60" stroke="#8B6F47" strokeWidth="2" fill="none" strokeLinecap="round" />
+                  {/* Smile - happy */}
+                  <path d="M 85 68 Q 100 78 115 68" stroke="#8B6F47" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+                  {/* Chin detail */}
+                  <ellipse cx="100" cy="82" rx="20" ry="10" fill="#FFD7A8" stroke="#8B6F47" strokeWidth="1.5" />
+                  {/* Neck */}
+                  <rect x="92" y="82" width="16" height="12" fill="#FFD7A8" stroke="#8B6F47" strokeWidth="1" />
+                  {/* Shirt - Blue jacket */}
+                  <path d="M 60 95 L 55 150 Q 55 160 65 165 L 135 165 Q 145 160 145 150 L 140 95 Z" fill="#2C5AA0" stroke="#1A3A7A" strokeWidth="2" />
+                  {/* Shirt collar */}
+                  <polygon points="85,95 100,105 115,95" fill="#FFF" stroke="#1A3A7A" strokeWidth="1.5" />
+                  {/* Buttons */}
+                  <circle cx="100" cy="115" r="2.5" fill="#FFD700" />
+                  <circle cx="100" cy="135" r="2.5" fill="#FFD700" />
+                  {/* Heart on chest */}
+                  <path d="M 95 125 Q 85 115 85 110 Q 85 105 90 105 Q 95 108 100 112 Q 105 108 110 105 Q 115 105 115 110 Q 115 115 105 125" fill="#FF1493" stroke="#FF69B4" strokeWidth="1" />
+                  {/* Arms */}
+                  <ellipse cx="55" cy="110" rx="9" ry="25" fill="#FFD7A8" stroke="#8B6F47" strokeWidth="1.5" />
+                  <ellipse cx="145" cy="110" rx="9" ry="25" fill="#FFD7A8" stroke="#8B6F47" strokeWidth="1.5" />
+                  {/* Pants - dark blue */}
+                  <path d="M 70 165 L 65 210 Q 65 215 70 218 L 85 218 Q 88 215 88 210 L 92 165 Z" fill="#1A3A7A" stroke="#0D1F4F" strokeWidth="1.5" />
+                  <path d="M 130 165 L 135 210 Q 135 215 130 218 L 115 218 Q 112 215 112 210 L 108 165 Z" fill="#1A3A7A" stroke="#0D1F4F" strokeWidth="1.5" />
+                  {/* Shoes */}
+                  <ellipse cx="78" cy="220" rx="8" ry="5" fill="#3D3D3D" />
+                  <ellipse cx="122" cy="220" rx="8" ry="5" fill="#3D3D3D" />
                 </svg>
               </div>
             </div>
           </div>
 
-          {/* RIGHT AVATAR - Hope */}
+          {/* RIGHT AVATAR - Hope (SHORT) */}
           <div className="absolute animate-fly-in-right animate-move-to-center-right animate-dive-in-right hidden md:block" style={{ animationDelay: '0.2s' }}>
-            <div className="relative w-48 h-48 mx-auto animate-float" style={{ animationDelay: '0.3s' }}>
+            <div className="relative w-56 h-56 mx-auto animate-float" style={{ animationDelay: '0.3s' }}>
               <div className="absolute inset-0 rounded-full animate-pulse-glow" />
               <div
                 className="w-full h-full rounded-full flex items-center justify-center relative overflow-hidden"
@@ -289,20 +321,52 @@ export default function EnvelopeIntro({ onEnter }) {
                   border: '4px solid rgba(255, 255, 255, 0.3)',
                 }}
               >
-                {/* Hope - Female Avatar */}
-                <svg className="w-5/6 h-5/6" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="100" cy="80" r="50" fill="#FFE0D8" stroke="#C08B7F" strokeWidth="2" />
-                  {/* Hair */}
-                  <path d="M 50 80 Q 50 30, 100 30 Q 150 30, 150 80" fill="#8B4513" />
-                  <circle cx="85" cy="70" r="6" fill="#000" />
-                  <circle cx="87" cy="68" r="2" fill="#FFF" />
-                  <circle cx="115" cy="70" r="6" fill="#000" />
-                  <circle cx="117" cy="68" r="2" fill="#FFF" />
-                  <path d="M 80 90 Q 100 100 120 90" stroke="#C08B7F" strokeWidth="2" fill="none" strokeLinecap="round" />
-                  {/* Dress */}
-                  <path d="M 70 130 Q 100 155 130 130 L 125 180 Q 100 185 75 180 Z" fill="#FFB6D9" stroke="#C08B7F" strokeWidth="2" />
-                  {/* Heart on dress */}
-                  <path d="M 95 150 L 100 145 L 105 150 L 100 160 Z" fill="#FF1493" />
+                {/* Hope - Female Avatar - SHORT */}
+                <svg className="w-5/6 h-5/6" viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg">
+                  {/* Head */}
+                  <circle cx="100" cy="45" r="32" fill="#FFE0D8" stroke="#C08B7F" strokeWidth="2.5" />
+                  {/* Long Hair - feminine */}
+                  <path d="M 68 60 Q 60 90 65 140 Q 70 155 85 160" fill="#8B4513" />
+                  <path d="M 132 60 Q 140 90 135 140 Q 130 155 115 160" fill="#8B4513" />
+                  {/* Hair top */}
+                  <ellipse cx="100" cy="18" rx="36" ry="22" fill="#8B4513" />
+                  <path d="M 70 35 Q 68 50 72 65" stroke="#8B4513" strokeWidth="2" fill="none" />
+                  <path d="M 130 35 Q 132 50 128 65" stroke="#8B4513" strokeWidth="2" fill="none" />
+                  {/* Eyes - big and expressive */}
+                  <ellipse cx="85" cy="40" rx="5.5" ry="7" fill="#000" />
+                  <ellipse cx="87" cy="37" rx="2" ry="2.5" fill="#FFF" />
+                  <ellipse cx="115" cy="40" rx="5.5" ry="7" fill="#000" />
+                  <ellipse cx="117" cy="37" rx="2" ry="2.5" fill="#FFF" />
+                  {/* Eyelashes - feminine */}
+                  <path d="M 80 33 Q 78 28 76 33" stroke="#8B4513" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+                  <path d="M 90 33 Q 88 28 86 33" stroke="#8B4513" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+                  <path d="M 110 33 Q 108 28 106 33" stroke="#8B4513" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+                  <path d="M 120 33 Q 118 28 116 33" stroke="#8B4513" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+                  {/* Rosy cheeks */}
+                  <circle cx="70" cy="50" r="6" fill="#FFB6C1" opacity="0.6" />
+                  <circle cx="130" cy="50" r="6" fill="#FFB6C1" opacity="0.6" />
+                  {/* Nose */}
+                  <path d="M 100 42 L 100 55" stroke="#C08B7F" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+                  {/* Smile - sweet */}
+                  <path d="M 85 62 Q 100 72 115 62" stroke="#C08B7F" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+                  {/* Neck */}
+                  <rect x="93" y="74" width="14" height="10" fill="#FFE0D8" stroke="#C08B7F" strokeWidth="1" />
+                  {/* Dress - Pink/Magenta */}
+                  <path d="M 65 85 L 62 150 Q 62 160 72 165 L 128 165 Q 138 160 138 150 L 135 85 Z" fill="#FF69B4" stroke="#E91E63" strokeWidth="2" />
+                  {/* Dress waist detail */}
+                  <line x1="65" y1="95" x2="135" y2="95" stroke="#E91E63" strokeWidth="1.5" />
+                  {/* Dress pattern - hearts */}
+                  <path d="M 85 110 Q 80 105 80 100 Q 80 97 82 97 Q 85 99 88 102 Q 91 99 94 97 Q 96 97 96 100 Q 96 105 91 110" fill="#FF1493" />
+                  <path d="M 115 120 Q 110 115 110 110 Q 110 107 112 107 Q 115 109 118 112 Q 121 109 124 107 Q 126 107 126 110 Q 126 115 121 120" fill="#FF1493" />
+                  {/* Arms */}
+                  <ellipse cx="60" cy="105" rx="8" ry="22" fill="#FFE0D8" stroke="#C08B7F" strokeWidth="1.5" />
+                  <ellipse cx="140" cy="105" rx="8" ry="22" fill="#FFE0D8" stroke="#C08B7F" strokeWidth="1.5" />
+                  {/* Legs - short */}
+                  <path d="M 82 165 L 78 180 L 88 180 Z" fill="#FFE0D8" stroke="#C08B7F" strokeWidth="1.5" />
+                  <path d="M 118 165 L 112 180 L 122 180 Z" fill="#FFE0D8" stroke="#C08B7F" strokeWidth="1.5" />
+                  {/* Shoes - cute */}
+                  <ellipse cx="83" cy="182" rx="6" ry="4" fill="#FFB6D9" stroke="#E91E63" strokeWidth="1" />
+                  <ellipse cx="117" cy="182" rx="6" ry="4" fill="#FFB6D9" stroke="#E91E63" strokeWidth="1" />
                 </svg>
               </div>
             </div>
