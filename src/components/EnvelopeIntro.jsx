@@ -187,21 +187,22 @@ export default function EnvelopeIntro({ onEnter }) {
   useEffect(() => {
     if (stage === 'idle') {
       const timer1 = setTimeout(() => {
-        // After avatars move and clap (4.6s), trigger envelope opening
+        // After avatars clap (at 4.6s), show hearts and start transition
         setShowFireworks(true)
-        setStage('flap-opening')
+        setLeaving(true)
       }, 4600)
 
       const timer2 = setTimeout(() => {
-        setStage('cards-rising')
-      }, 5550)
+        // After fade out animation, go to main page
+        onEnter()
+      }, 5500)
 
       return () => {
         clearTimeout(timer1)
         clearTimeout(timer2)
       }
     }
-  }, [stage])
+  }, [stage, onEnter])
 
   const handleEnvelopeClick = () => {
     if (stage !== 'idle') return
@@ -244,7 +245,7 @@ export default function EnvelopeIntro({ onEnter }) {
 
       {/* ✨ ANIMATED AVATARS - Auto-play sequence ✨ */}
       {stage === 'idle' && (
-        <div className="absolute inset-0 z-40 flex items-center justify-center pointer-events-none">
+        <div className="absolute inset-0 z-40 flex items-center justify-center pointer-events-none" style={{ opacity: leaving ? 0 : 1, transition: 'opacity 0.7s ease' }}>
           {/* LEFT AVATAR - Timothy */}
           <div className="absolute animate-fly-in-left animate-move-to-center-left animate-clap-left hidden md:block" style={{ animationDelay: '0s' }}>
             <div className="relative w-48 h-48 mx-auto animate-float">
@@ -305,8 +306,8 @@ export default function EnvelopeIntro({ onEnter }) {
         </div>
       )}
 
-      {/* ✨ FALLING HEARTS - Show on clap ✨ */}
-      {showFireworks && stage !== 'idle' && (
+      {/* ✨ FALLING HEARTS - Show during clap & transition ✨ */}
+      {showFireworks && (
         <>
           {/* Falling hearts */}
           {[...Array(25)].map((_, i) => (
@@ -328,7 +329,7 @@ export default function EnvelopeIntro({ onEnter }) {
       )}
 
       {/* Top tagline */}
-      <p className={`font-body text-[0.7rem] tracking-[0.4em] uppercase text-gold/60 mb-6 transition-opacity duration-500 ${flapOpen ? 'opacity-0' : 'opacity-100'}`}>
+      <p className={`font-body text-[0.7rem] tracking-[0.4em] uppercase text-gold/60 mb-6 transition-opacity duration-500 ${showFireworks ? 'opacity-0' : 'opacity-100'}`}>
         You have a message
       </p>
 
@@ -339,7 +340,7 @@ export default function EnvelopeIntro({ onEnter }) {
         envelope sits at the BOTTOM. When cardsRising the box grows upward
         via padding-top, keeping the viewport centred on the envelope.
       */}
-      <div style={{ position: 'relative', width: '360px' }}>
+      <div style={{ position: 'relative', width: '360px', opacity: showFireworks ? 0 : 1, transition: 'opacity 0.5s ease' }}>
 
         {/* Card fan — appears above envelope */}
         <div
