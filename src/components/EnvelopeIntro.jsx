@@ -27,21 +27,25 @@ export default function EnvelopeIntro({ onEnter }) {
         }
       }
 
-      @keyframes clap-left {
-        0%, 100% {
-          transform: rotateZ(0deg);
+      @keyframes diveIntoEnvelope-left {
+        0% {
+          transform: translateX(0) translateY(0) scale(1);
+          opacity: 1;
         }
-        50% {
-          transform: rotateZ(-30deg);
+        100% {
+          transform: translateX(30px) translateY(80px) scale(0.3);
+          opacity: 0;
         }
       }
 
-      @keyframes clap-right {
-        0%, 100% {
-          transform: rotateZ(0deg);
+      @keyframes diveIntoEnvelope-right {
+        0% {
+          transform: translateX(0) translateY(0) scale(1);
+          opacity: 1;
         }
-        50% {
-          transform: rotateZ(30deg);
+        100% {
+          transform: translateX(-30px) translateY(80px) scale(0.3);
+          opacity: 0;
         }
       }
 
@@ -135,13 +139,13 @@ export default function EnvelopeIntro({ onEnter }) {
         animation-delay: 2.5s;
       }
 
-      .animate-clap-left {
-        animation: clap-left 0.6s ease-in-out forwards;
+      .animate-dive-in-left {
+        animation: diveIntoEnvelope-left 0.8s ease-in forwards;
         animation-delay: 4s;
       }
 
-      .animate-clap-right {
-        animation: clap-right 0.6s ease-in-out forwards;
+      .animate-dive-in-right {
+        animation: diveIntoEnvelope-right 0.8s ease-in forwards;
         animation-delay: 4s;
       }
 
@@ -247,7 +251,7 @@ export default function EnvelopeIntro({ onEnter }) {
       {stage === 'idle' && (
         <div className="absolute inset-0 z-40 flex items-center justify-center pointer-events-none" style={{ opacity: leaving ? 0 : 1, transition: 'opacity 0.7s ease' }}>
           {/* LEFT AVATAR - Timothy */}
-          <div className="absolute animate-fly-in-left animate-move-to-center-left animate-clap-left hidden md:block" style={{ animationDelay: '0s' }}>
+          <div className="absolute animate-fly-in-left animate-move-to-center-left animate-dive-in-left hidden md:block" style={{ animationDelay: '0s' }}>
             <div className="relative w-48 h-48 mx-auto animate-float">
               <div className="absolute inset-0 rounded-full animate-pulse-glow" />
               <div
@@ -274,7 +278,7 @@ export default function EnvelopeIntro({ onEnter }) {
           </div>
 
           {/* RIGHT AVATAR - Hope */}
-          <div className="absolute animate-fly-in-right animate-move-to-center-right animate-clap-right hidden md:block" style={{ animationDelay: '0.2s' }}>
+          <div className="absolute animate-fly-in-right animate-move-to-center-right animate-dive-in-right hidden md:block" style={{ animationDelay: '0.2s' }}>
             <div className="relative w-48 h-48 mx-auto animate-float" style={{ animationDelay: '0.3s' }}>
               <div className="absolute inset-0 rounded-full animate-pulse-glow" />
               <div
