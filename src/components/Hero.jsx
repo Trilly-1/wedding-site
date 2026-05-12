@@ -10,7 +10,7 @@ export default function Hero() {
           src="/img14.JPG"
           alt="Timothy and Hope"
           className="w-full h-full object-cover"
-          style={{ objectPosition: '50% 15%' }}
+          style={{ objectPosition: '50% 18%' }}
         />
 
         {/* MAIN OVERLAY */}
@@ -75,7 +75,7 @@ export default function Hero() {
 
         </div>
 
-        {/* DATE */}
+        {/* DATE
         <div
           className="inline-flex items-center gap-3 mt-8 px-7 py-2.5 rounded-full border border-gold/50 backdrop-blur-md"
           style={{ background: 'rgba(43,26,42,0.5)' }}
@@ -87,7 +87,7 @@ export default function Hero() {
           <span className="text-cream/90 uppercase tracking-widest text-xs">
             2026
           </span>
-        </div>
+        </div> */}
 
         {/* LOCATION */}
         <p className="mt-3 text-cream/70 uppercase tracking-widest text-xs">
