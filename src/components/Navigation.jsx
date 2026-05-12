@@ -80,6 +80,7 @@ export default function Navigation() {
         bg-white/10
         backdrop-blur-2xl
         border-b border-white/10
+        max-h-screen overflow-y-auto
       "
       style={{
         boxShadow: '0 10px 30px rgba(0,0,0,0.25)',
