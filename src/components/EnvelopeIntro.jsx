@@ -9,24 +9,60 @@ export default function EnvelopeIntro({ onEnter }) {
     // Add animations to the document head
     const style = document.createElement('style')
     style.textContent = `
-      @keyframes moveLeftToHug {
+      @keyframes walkLeftToHug {
         0% {
           transform: translateX(0) translateY(0) scale(1) rotateZ(0deg);
         }
+        12% {
+          transform: translateX(24px) translateY(-12px) scale(1) rotateZ(-1deg);
+        }
+        25% {
+          transform: translateX(50px) translateY(0) scale(1) rotateZ(-1deg);
+        }
+        37% {
+          transform: translateX(74px) translateY(-12px) scale(1) rotateZ(-2deg);
+        }
         50% {
           transform: translateX(100px) translateY(-8px) scale(1) rotateZ(-2deg);
+        }
+        62% {
+          transform: translateX(124px) translateY(-12px) scale(1) rotateZ(-2.5deg);
+        }
+        75% {
+          transform: translateX(150px) translateY(0) scale(1) rotateZ(-2.5deg);
+        }
+        87% {
+          transform: translateX(174px) translateY(-12px) scale(1) rotateZ(-3deg);
         }
         100% {
           transform: translateX(200px) translateY(0) scale(1) rotateZ(-3deg);
         }
       }
 
-      @keyframes moveRightToHug {
+      @keyframes walkRightToHug {
         0% {
           transform: translateX(0) translateY(0) scale(1) rotateZ(0deg);
         }
+        12% {
+          transform: translateX(-24px) translateY(-12px) scale(1) rotateZ(1deg);
+        }
+        25% {
+          transform: translateX(-50px) translateY(0) scale(1) rotateZ(1deg);
+        }
+        37% {
+          transform: translateX(-74px) translateY(-12px) scale(1) rotateZ(2deg);
+        }
         50% {
           transform: translateX(-100px) translateY(-8px) scale(1) rotateZ(2deg);
+        }
+        62% {
+          transform: translateX(-124px) translateY(-12px) scale(1) rotateZ(2.5deg);
+        }
+        75% {
+          transform: translateX(-150px) translateY(0) scale(1) rotateZ(2.5deg);
+        }
+        87% {
+          transform: translateX(-174px) translateY(-12px) scale(1) rotateZ(3deg);
         }
         100% {
           transform: translateX(-200px) translateY(0) scale(1) rotateZ(3deg);
@@ -154,12 +190,12 @@ export default function EnvelopeIntro({ onEnter }) {
       }
 
       .animate-move-left-to-hug {
-        animation: moveLeftToHug 3.5s ease-in-out forwards;
+        animation: walkLeftToHug 3.5s ease-in-out forwards;
         animation-delay: 3s;
       }
 
       .animate-move-right-to-hug {
-        animation: moveRightToHug 3.5s ease-in-out forwards;
+        animation: walkRightToHug 3.5s ease-in-out forwards;
         animation-delay: 3s;
       }
 
@@ -191,8 +227,37 @@ export default function EnvelopeIntro({ onEnter }) {
         animation: flyInFromRight 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
       }
 
-      .animate-float {
-        animation: float 3s ease-in-out infinite;
+      @keyframes walk-legs {
+        0%, 100% {
+          transform: translateY(0) rotateZ(0deg);
+        }
+        25% {
+          transform: translateY(-8px) rotateZ(-2deg);
+        }
+        50% {
+          transform: translateY(0) rotateZ(0deg);
+        }
+        75% {
+          transform: translateY(-8px) rotateZ(2deg);
+        }
+      }
+
+      .timothy-legs {
+        animation: walk-legs 0.8s ease-in-out infinite;
+        transform-origin: 100px 165px;
+      }
+
+      .hope-legs {
+        animation: walk-legs 0.8s ease-in-out infinite;
+        transform-origin: 100px 165px;
+      }
+
+      .animate-move-left-to-hug .timothy-legs {
+        animation: walk-legs 0.8s ease-in-out 3s infinite;
+      }
+
+      .animate-move-right-to-hug .hope-legs {
+        animation: walk-legs 0.8s ease-in-out 3s infinite;
       }
 
       .animate-pulse-glow {
@@ -324,9 +389,11 @@ export default function EnvelopeIntro({ onEnter }) {
                   {/* Arms */}
                   <ellipse cx="55" cy="110" rx="9" ry="25" fill="#FFD7A8" stroke="#8B6F47" strokeWidth="1.5" />
                   <ellipse cx="145" cy="110" rx="9" ry="25" fill="#FFD7A8" stroke="#8B6F47" strokeWidth="1.5" />
-                  {/* Pants - dark blue */}
-                  <path d="M 70 165 L 65 210 Q 65 215 70 218 L 85 218 Q 88 215 88 210 L 92 165 Z" fill="#1A3A7A" stroke="#0D1F4F" strokeWidth="1.5" />
-                  <path d="M 130 165 L 135 210 Q 135 215 130 218 L 115 218 Q 112 215 112 210 L 108 165 Z" fill="#1A3A7A" stroke="#0D1F4F" strokeWidth="1.5" />
+                  {/* Pants - dark blue (legs) */}
+                  <g className="timothy-legs">
+                    <path d="M 70 165 L 65 210 Q 65 215 70 218 L 85 218 Q 88 215 88 210 L 92 165 Z" fill="#1A3A7A" stroke="#0D1F4F" strokeWidth="1.5" />
+                    <path d="M 130 165 L 135 210 Q 135 215 130 218 L 115 218 Q 112 215 112 210 L 108 165 Z" fill="#1A3A7A" stroke="#0D1F4F" strokeWidth="1.5" />
+                  </g>
                   {/* Shoes */}
                   <ellipse cx="78" cy="220" rx="8" ry="5" fill="#3D3D3D" />
                   <ellipse cx="122" cy="220" rx="8" ry="5" fill="#3D3D3D" />
@@ -378,8 +445,10 @@ export default function EnvelopeIntro({ onEnter }) {
                   <ellipse cx="60" cy="105" rx="8" ry="22" fill="#FFE0D8" stroke="#C08B7F" strokeWidth="1.5" />
                   <ellipse cx="140" cy="105" rx="8" ry="22" fill="#FFE0D8" stroke="#C08B7F" strokeWidth="1.5" />
                   {/* Legs - short */}
-                  <path d="M 82 165 L 78 180 L 88 180 Z" fill="#FFE0D8" stroke="#C08B7F" strokeWidth="1.5" />
-                  <path d="M 118 165 L 112 180 L 122 180 Z" fill="#FFE0D8" stroke="#C08B7F" strokeWidth="1.5" />
+                  <g className="hope-legs">
+                    <path d="M 82 165 L 78 180 L 88 180 Z" fill="#FFE0D8" stroke="#C08B7F" strokeWidth="1.5" />
+                    <path d="M 118 165 L 112 180 L 122 180 Z" fill="#FFE0D8" stroke="#C08B7F" strokeWidth="1.5" />
+                  </g>
                   {/* Shoes - cute */}
                   <ellipse cx="83" cy="182" rx="6" ry="4" fill="#FFB6D9" stroke="#E91E63" strokeWidth="1" />
                   <ellipse cx="117" cy="182" rx="6" ry="4" fill="#FFB6D9" stroke="#E91E63" strokeWidth="1" />
