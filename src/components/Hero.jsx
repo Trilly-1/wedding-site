@@ -10,7 +10,7 @@ export default function Hero() {
           src="/img14.JPG"
           alt="Timothy and Hope"
           className="w-full h-full object-cover"
-          style={{ objectPosition: '40% 20%' }}
+          style={{ objectPosition: '50% 35%' }}
         />
 
         {/* MAIN OVERLAY */}
