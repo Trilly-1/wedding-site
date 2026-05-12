@@ -22,6 +22,11 @@ export default function EnvelopeIntro({ onEnter }) {
         50% { text-shadow: 0 0 20px rgba(201, 160, 90, 1), 0 0 40px rgba(255, 215, 0, 0.6); }
       }
 
+      @keyframes super-shine {
+        0%, 100% { text-shadow: 0 0 15px rgba(201, 160, 90, 0.8), 0 0 30px rgba(255, 215, 0, 0.5), 0 0 50px rgba(255, 215, 0, 0.3); filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.6)); }
+        50% { text-shadow: 0 0 30px rgba(201, 160, 90, 1), 0 0 60px rgba(255, 215, 0, 0.8), 0 0 90px rgba(255, 215, 0, 0.5); filter: drop-shadow(0 0 20px rgba(255, 215, 0, 1)); }
+      }
+
       @keyframes fall-hearts {
         0% { opacity: 1; transform: translateY(-100px) rotate(0deg); }
         100% { opacity: 0; transform: translateY(100vh) rotate(360deg); }
@@ -142,13 +147,13 @@ export default function EnvelopeIntro({ onEnter }) {
               {/* Shirt collar */}
               <path d="M 85 85 L 100 95 L 115 85" fill="#F0E5D8"/>
               
-              {/* Left Arm */}
-              <rect x="30" y="95" width="35" height="15" fill="#D4A574" rx="7" transform="rotate(-20 65 102)"/>
-              <rect x="25" y="105" width="20" height="12" fill="#D4A574" rx="6" transform="rotate(-25 35 120)"/>
+              {/* Left Arm - reaching up to button */}
+              <rect x="30" y="90" width="35" height="15" fill="#D4A574" rx="7" transform="rotate(-45 65 97)"/>
+              <rect x="25" y="85" width="20" height="12" fill="#D4A574" rx="6" transform="rotate(-50 35 95)"/>
               
-              {/* Right Arm */}
-              <rect x="135" y="95" width="35" height="15" fill="#D4A574" rx="7" transform="rotate(20 135 102)"/>
-              <rect x="155" y="105" width="20" height="12" fill="#D4A574" rx="6" transform="rotate(25 165 120)"/>
+              {/* Right Arm - reaching up to button */}
+              <rect x="135" y="90" width="35" height="15" fill="#D4A574" rx="7" transform="rotate(45 135 97)"/>
+              <rect x="155" y="85" width="20" height="12" fill="#D4A574" rx="6" transform="rotate(50 165 95)"/>
               
               {/* Left Leg */}
               <rect x="80" y="165" width="15" height="35" fill="#3D3428" rx="7"/>
@@ -160,9 +165,10 @@ export default function EnvelopeIntro({ onEnter }) {
             </svg>
           </div>
 
-          {/* Click Button Text - Center */}
+      {/* Click Button Text - Center */}
           <div className="flex flex-col items-center cursor-pointer" onClick={handleOpenEnvelope}>
-            <p className="text-center text-gold font-body text-sm tracking-widest animate-shine hover:text-gold-light transition-colors">
+            <p className="text-center text-gold font-body text-lg tracking-widest animate-pulse font-bold"
+              style={{ animation: 'super-shine 1.5s ease-in-out infinite' }}>
               CLICK TO OPEN
             </p>
           </div>
@@ -190,13 +196,13 @@ export default function EnvelopeIntro({ onEnter }) {
               {/* Dress details */}
               <path d="M 80 100 Q 100 105 120 100" stroke="#F0D4E0" strokeWidth="2" fill="none" opacity="0.7"/>
               
-              {/* Left Arm */}
-              <rect x="28" y="100" width="32" height="14" fill="#E8B89C" rx="7" transform="rotate(-25 60 107)"/>
-              <rect x="20" y="110" width="18" height="11" fill="#E8B89C" rx="6" transform="rotate(-30 30 125)"/>
+              {/* Left Arm - reaching up to button */}
+              <rect x="28" y="95" width="32" height="14" fill="#E8B89C" rx="7" transform="rotate(-50 60 102)"/>
+              <rect x="20" y="85" width="18" height="11" fill="#E8B89C" rx="6" transform="rotate(-55 30 92)"/>
               
-              {/* Right Arm */}
-              <rect x="140" y="100" width="32" height="14" fill="#E8B89C" rx="7" transform="rotate(25 140 107)"/>
-              <rect x="162" y="110" width="18" height="11" fill="#E8B89C" rx="6" transform="rotate(30 170 125)"/>
+              {/* Right Arm - reaching up to button */}
+              <rect x="140" y="95" width="32" height="14" fill="#E8B89C" rx="7" transform="rotate(50 140 102)"/>
+              <rect x="162" y="85" width="18" height="11" fill="#E8B89C" rx="6" transform="rotate(55 170 92)"/>
               
               {/* Left Leg */}
               <rect x="85" y="160" width="13" height="40" fill="#6B4423" rx="6"/>
