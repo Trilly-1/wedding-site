@@ -22,10 +22,24 @@ export default function Navigation() {
         100% { transform: translateX(-100%); }
       }
       .marquee-scroll {
-        animation: marquee 20s linear infinite;
+        animation: marquee 25s linear infinite;
       }
       .marquee-scroll:hover {
         animation-play-state: paused;
+      }
+      .marquee-date {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.3rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      }
+      .marquee-text {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 0.95rem;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
       }
     `
     document.head.appendChild(style)
@@ -35,21 +49,21 @@ export default function Navigation() {
   return (
     <>
       {/* Marquee Banner */}
-      <div className="fixed top-0 left-0 right-0 z-[99998] bg-gradient-to-r from-rose-d via-rose to-rose-d h-8 flex items-center overflow-hidden border-b border-rose-d/30">
-        <div className="marquee-scroll whitespace-nowrap flex items-center gap-8">
-          <span className="text-white font-script text-lg">✨ June 13, 2026 ✨</span>
-          <span className="text-white font-body text-sm tracking-widest">Timothy weds Hope</span>
-          <span className="text-white font-script text-lg">✨ June 13, 2026 ✨</span>
-          <span className="text-white font-body text-sm tracking-widest">Timothy weds Hope</span>
-          <span className="text-white font-script text-lg">✨ June 13, 2026 ✨</span>
-          <span className="text-white font-body text-sm tracking-widest">Timothy weds Hope</span>
+      <div className="fixed top-0 left-0 right-0 z-[99998] bg-gradient-to-r from-rose-d via-rose to-rose-d h-9 flex items-center overflow-hidden border-b border-rose-d/30">
+        <div className="marquee-scroll whitespace-nowrap flex items-center gap-12">
+          <span className="text-white marquee-date">✨ June 13, 2026 ✨</span>
+          <span className="text-white marquee-text">Timothy weds Hope</span>
+          <span className="text-white marquee-date">✨ June 13, 2026 ✨</span>
+          <span className="text-white marquee-text">Timothy weds Hope</span>
+          <span className="text-white marquee-date">✨ June 13, 2026 ✨</span>
+          <span className="text-white marquee-text">Timothy weds Hope</span>
         </div>
       </div>
 
   return (
     <nav
       className="
-        fixed top-8 left-0 right-0
+        fixed top-9 left-0 right-0
         z-[99999]
         bg-white/10
         backdrop-blur-2xl
