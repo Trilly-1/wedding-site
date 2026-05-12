@@ -11,19 +11,25 @@ export default function EnvelopeIntro({ onEnter }) {
     style.textContent = `
       @keyframes moveLeftToHug {
         0% {
-          transform: translateX(0) translateY(0) scale(1);
+          transform: translateX(0) translateY(0) scale(1) rotateZ(0deg);
+        }
+        50% {
+          transform: translateX(60px) translateY(-8px) scale(1) rotateZ(-2deg);
         }
         100% {
-          transform: translateX(140px) translateY(0) scale(1) rotateZ(-5deg);
+          transform: translateX(120px) translateY(0) scale(1) rotateZ(-3deg);
         }
       }
 
       @keyframes moveRightToHug {
         0% {
-          transform: translateX(0) translateY(0) scale(1);
+          transform: translateX(0) translateY(0) scale(1) rotateZ(0deg);
+        }
+        50% {
+          transform: translateX(-60px) translateY(-8px) scale(1) rotateZ(2deg);
         }
         100% {
-          transform: translateX(-140px) translateY(0) scale(1) rotateZ(5deg);
+          transform: translateX(-120px) translateY(0) scale(1) rotateZ(3deg);
         }
       }
 
@@ -52,7 +58,7 @@ export default function EnvelopeIntro({ onEnter }) {
       @keyframes flyInFromLeft {
         0% {
           opacity: 0;
-          transform: translateX(-150px) translateY(-50px) scale(0.5);
+          transform: translateX(-250px) translateY(-30px) scale(0.6);
         }
         100% {
           opacity: 1;
@@ -63,11 +69,29 @@ export default function EnvelopeIntro({ onEnter }) {
       @keyframes flyInFromRight {
         0% {
           opacity: 0;
-          transform: translateX(150px) translateY(-50px) scale(0.5);
+          transform: translateX(250px) translateY(-30px) scale(0.6);
         }
         100% {
           opacity: 1;
           transform: translateX(0) translateY(0) scale(1);
+        }
+      }
+
+      @keyframes sway-left {
+        0%, 100% {
+          transform: translateY(0px) rotateZ(-1deg);
+        }
+        50% {
+          transform: translateY(-8px) rotateZ(-0.5deg);
+        }
+      }
+
+      @keyframes sway-right {
+        0%, 100% {
+          transform: translateY(0px) rotateZ(1deg);
+        }
+        50% {
+          transform: translateY(-8px) rotateZ(0.5deg);
         }
       }
 
@@ -130,30 +154,40 @@ export default function EnvelopeIntro({ onEnter }) {
       }
 
       .animate-move-left-to-hug {
-        animation: moveLeftToHug 1.5s ease-in-out forwards;
-        animation-delay: 2.5s;
+        animation: moveLeftToHug 3.5s ease-in-out forwards;
+        animation-delay: 3s;
       }
 
       .animate-move-right-to-hug {
-        animation: moveRightToHug 1.5s ease-in-out forwards;
-        animation-delay: 2.5s;
+        animation: moveRightToHug 3.5s ease-in-out forwards;
+        animation-delay: 3s;
       }
 
       .animate-dive-in-left {
         animation: diveIntoEnvelope-left 0.8s ease-in forwards;
-        animation-delay: 4s;
+        animation-delay: 6.5s;
       }
 
       .animate-dive-in-right {
         animation: diveIntoEnvelope-right 0.8s ease-in forwards;
-        animation-delay: 4s;
+        animation-delay: 6.5s;
       }
 
       .animate-fly-in-left {
-        animation: flyInFromLeft 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        animation: flyInFromLeft 2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
       }
 
       .animate-fly-in-right {
+        animation: flyInFromRight 2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      }
+
+      .animate-sway-left {
+        animation: sway-left 2.5s ease-in-out infinite;
+      }
+
+      .animate-sway-right {
+        animation: sway-right 2.5s ease-in-out infinite;
+      }
         animation: flyInFromRight 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
       }
 
@@ -191,15 +225,15 @@ export default function EnvelopeIntro({ onEnter }) {
   useEffect(() => {
     if (stage === 'idle') {
       const timer1 = setTimeout(() => {
-        // After avatars clap (at 4.6s), show hearts and start transition
+        // After avatars move close (hug moment ~5.5s), show hearts and start transition
         setShowFireworks(true)
         setLeaving(true)
-      }, 4600)
+      }, 5500)
 
       const timer2 = setTimeout(() => {
-        // After fade out animation, go to main page
+        // After dive completes, go to main page
         onEnter()
-      }, 5500)
+      }, 7500)
 
       return () => {
         clearTimeout(timer1)
@@ -207,6 +241,7 @@ export default function EnvelopeIntro({ onEnter }) {
       }
     }
   }, [stage, onEnter])
+
 
   const handleEnvelopeClick = () => {
     if (stage !== 'idle') return
@@ -252,7 +287,7 @@ export default function EnvelopeIntro({ onEnter }) {
         <div className="absolute inset-0 z-40 flex items-center justify-center pointer-events-none" style={{ opacity: leaving ? 0 : 1, transition: 'opacity 0.7s ease' }}>
           {/* LEFT AVATAR - Timothy (TALL) - Starts on LEFT of envelope */}
           <div className="absolute animate-fly-in-left animate-move-left-to-hug hidden md:block" style={{ animationDelay: '0s', left: '-200px' }}>
-            <div className="relative w-64 h-64 mx-auto animate-float">
+            <div className="relative w-64 h-64 mx-auto animate-float animate-sway-left">
               <div className="absolute inset-0 rounded-full animate-pulse-glow" />
               <div
                 className="w-full h-full rounded-full flex items-center justify-center relative overflow-hidden"
@@ -311,7 +346,7 @@ export default function EnvelopeIntro({ onEnter }) {
 
           {/* RIGHT AVATAR - Hope (SHORT) - Starts on RIGHT of envelope */}
           <div className="absolute animate-fly-in-right animate-move-right-to-hug hidden md:block" style={{ animationDelay: '0.2s', right: '-200px' }}>
-            <div className="relative w-56 h-56 mx-auto animate-float" style={{ animationDelay: '0.3s' }}>
+            <div className="relative w-56 h-56 mx-auto animate-float animate-sway-right" style={{ animationDelay: '0.3s' }}>
               <div className="absolute inset-0 rounded-full animate-pulse-glow" />
               <div
                 className="w-full h-full rounded-full flex items-center justify-center relative overflow-hidden"
