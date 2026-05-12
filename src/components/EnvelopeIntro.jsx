@@ -190,23 +190,23 @@ export default function EnvelopeIntro({ onEnter }) {
       }
 
       .animate-move-left-to-hug {
-        animation: walkLeftToHug 3.5s ease-in-out forwards;
-        animation-delay: 3s;
+        animation: walkLeftToHug 60s linear forwards;
+        animation-delay: 2s;
       }
 
       .animate-move-right-to-hug {
-        animation: walkRightToHug 3.5s ease-in-out forwards;
-        animation-delay: 3s;
+        animation: walkRightToHug 60s linear forwards;
+        animation-delay: 2s;
       }
 
       .animate-dive-in-left {
         animation: diveIntoEnvelope-left 0.8s ease-in forwards;
-        animation-delay: 6.5s;
+        animation-delay: 62s;
       }
 
       .animate-dive-in-right {
         animation: diveIntoEnvelope-right 0.8s ease-in forwards;
-        animation-delay: 6.5s;
+        animation-delay: 62s;
       }
 
       .animate-fly-in-left {
@@ -232,32 +232,32 @@ export default function EnvelopeIntro({ onEnter }) {
           transform: translateY(0) rotateZ(0deg);
         }
         25% {
-          transform: translateY(-8px) rotateZ(-2deg);
+          transform: translateY(-12px) rotateZ(-3deg);
         }
         50% {
           transform: translateY(0) rotateZ(0deg);
         }
         75% {
-          transform: translateY(-8px) rotateZ(2deg);
+          transform: translateY(-12px) rotateZ(3deg);
         }
       }
 
       .timothy-legs {
-        animation: walk-legs 0.8s ease-in-out infinite;
+        animation: walk-legs 3s ease-in-out infinite;
         transform-origin: 100px 165px;
       }
 
       .hope-legs {
-        animation: walk-legs 0.8s ease-in-out infinite;
+        animation: walk-legs 3s ease-in-out infinite;
         transform-origin: 100px 165px;
       }
 
       .animate-move-left-to-hug .timothy-legs {
-        animation: walk-legs 0.8s ease-in-out 3s infinite;
+        animation: walk-legs 3s ease-in-out 2s infinite;
       }
 
       .animate-move-right-to-hug .hope-legs {
-        animation: walk-legs 0.8s ease-in-out 3s infinite;
+        animation: walk-legs 3s ease-in-out 2s infinite;
       }
 
       .animate-pulse-glow {
@@ -290,15 +290,15 @@ export default function EnvelopeIntro({ onEnter }) {
   useEffect(() => {
     if (stage === 'idle') {
       const timer1 = setTimeout(() => {
-        // After avatars move close (hug moment ~5.5s), show hearts and start transition
+        // After avatars walk to envelope (at 60s), show hearts and start transition
         setShowFireworks(true)
         setLeaving(true)
-      }, 5500)
+      }, 62000)
 
       const timer2 = setTimeout(() => {
         // After dive completes, go to main page
         onEnter()
-      }, 7500)
+      }, 63000)
 
       return () => {
         clearTimeout(timer1)
