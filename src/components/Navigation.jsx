@@ -73,7 +73,6 @@ export default function Navigation() {
         </div>
       </div>
 
-  return (
     <nav
       className="
         fixed top-9 left-0 right-0
