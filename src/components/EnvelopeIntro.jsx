@@ -90,35 +90,125 @@ export default function EnvelopeIntro({ onEnter }) {
         </p>
       )}
 
-      {/* Envelope - Click to Open */}
+      {/* Envelope with Avatars */}
       {!cardsRising && (
-        <div className="relative cursor-pointer group" onClick={handleOpenEnvelope}>
-          <div className="w-80 h-56 rounded-lg shadow-2xl overflow-hidden"
-            style={{ background: 'linear-gradient(135deg, #E8D5B7 0%, #F5E6D3 100%)' }}>
-            
-            {/* Envelope body with fold lines */}
-            <div className="absolute inset-0 w-full h-full">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <svg className="w-32 h-24 opacity-80" viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-                  {/* Envelope outline */}
-                  <rect x="20" y="30" width="160" height="100" fill="none" stroke="#C9A05A" strokeWidth="2" />
-                  {/* Flap */}
-                  <polygon points="20,30 100,80 180,30" fill="none" stroke="#C9A05A" strokeWidth="2" />
-                </svg>
-              </div>
+        <div className="relative flex items-center justify-center gap-8 mb-8">
+          
+          {/* Timothy Avatar (Left) */}
+          <div className="flex flex-col items-center">
+            <svg className="w-48 h-56 drop-shadow-lg" viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg">
+              {/* Head */}
+              <circle cx="100" cy="50" r="28" fill="#D4A574" stroke="#8B7355" strokeWidth="1.5"/>
+              
+              {/* Hair */}
+              <ellipse cx="100" cy="35" rx="32" ry="24" fill="#3D2817"/>
+              
+              {/* Eyes */}
+              <circle cx="90" cy="45" r="3" fill="#000"/>
+              <circle cx="110" cy="45" r="3" fill="#000"/>
+              
+              {/* Smile */}
+              <path d="M 90 55 Q 100 60 110 55" stroke="#8B6A47" strokeWidth="2" fill="none" strokeLinecap="round"/>
+              
+              {/* Body / Suit */}
+              <rect x="65" y="85" width="70" height="80" fill="#2C2416" stroke="#1a1410" strokeWidth="1.5" rx="4"/>
+              
+              {/* Shirt collar */}
+              <path d="M 85 85 L 100 95 L 115 85" fill="#F0E5D8"/>
+              
+              {/* Left Arm */}
+              <rect x="30" y="95" width="35" height="15" fill="#D4A574" rx="7" transform="rotate(-20 65 102)"/>
+              <rect x="25" y="105" width="20" height="12" fill="#D4A574" rx="6" transform="rotate(-25 35 120)"/>
+              
+              {/* Right Arm */}
+              <rect x="135" y="95" width="35" height="15" fill="#D4A574" rx="7" transform="rotate(20 135 102)"/>
+              <rect x="155" y="105" width="20" height="12" fill="#D4A574" rx="6" transform="rotate(25 165 120)"/>
+              
+              {/* Left Leg */}
+              <rect x="80" y="165" width="15" height="35" fill="#3D3428" rx="7"/>
+              <rect x="80" y="200" width="18" height="15" fill="#2C2416" rx="5"/>
+              
+              {/* Right Leg */}
+              <rect x="105" y="165" width="15" height="35" fill="#3D3428" rx="7"/>
+              <rect x="104" y="200" width="18" height="15" fill="#2C2416" rx="5"/>
+            </svg>
+            <p className="font-script text-lg text-rose-d mt-2">Timothy</p>
+          </div>
 
-              {/* Seal */}
-              <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 w-20 h-20 rounded-full bg-rose-d flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all animate-pulse-glow">
-                <span className="text-white font-script text-2xl animate-shine">T&H</span>
+          {/* Envelope - Click to Open */}
+          <div className="relative cursor-pointer group" onClick={handleOpenEnvelope}>
+            <div className="w-80 h-56 rounded-lg shadow-2xl overflow-hidden"
+              style={{ background: 'linear-gradient(135deg, #E8D5B7 0%, #F5E6D3 100%)' }}>
+              
+              {/* Envelope body with fold lines */}
+              <div className="absolute inset-0 w-full h-full">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <svg className="w-32 h-24 opacity-80" viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+                    {/* Envelope outline */}
+                    <rect x="20" y="30" width="160" height="100" fill="none" stroke="#C9A05A" strokeWidth="2" />
+                    {/* Flap */}
+                    <polygon points="20,30 100,80 180,30" fill="none" stroke="#C9A05A" strokeWidth="2" />
+                  </svg>
+                </div>
+
+                {/* Seal */}
+                <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 w-20 h-20 rounded-full bg-rose-d flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all animate-pulse-glow">
+                  <span className="text-white font-script text-2xl animate-shine">T&H</span>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Click Text */}
-          <p className="text-center mt-6 text-gold font-body text-sm tracking-widest animate-shine group-hover:text-gold-light transition-colors">
-            CLICK TO OPEN
-          </p>
+          {/* Hope Avatar (Right) */}
+          <div className="flex flex-col items-center">
+            <svg className="w-48 h-56 drop-shadow-lg" viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg">
+              {/* Head */}
+              <circle cx="100" cy="50" r="26" fill="#E8B89C" stroke="#9B7966" strokeWidth="1.5"/>
+              
+              {/* Hair */}
+              <ellipse cx="100" cy="32" rx="30" ry="24" fill="#6B4423"/>
+              <path d="M 70 48 Q 70 35 85 30 Q 100 25 115 30 Q 130 35 130 48" fill="#6B4423" opacity="0.6"/>
+              
+              {/* Eyes */}
+              <circle cx="90" cy="46" r="3.5" fill="#000"/>
+              <circle cx="110" cy="46" r="3.5" fill="#000"/>
+              
+              {/* Smile */}
+              <path d="M 88 56 Q 100 62 112 56" stroke="#9B7966" strokeWidth="2" fill="none" strokeLinecap="round"/>
+              
+              {/* Body / Dress */}
+              <ellipse cx="100" cy="110" rx="38" ry="55" fill="#E8A6C3" stroke="#C9668F" strokeWidth="1.5"/>
+              
+              {/* Dress details */}
+              <path d="M 80 100 Q 100 105 120 100" stroke="#F0D4E0" strokeWidth="2" fill="none" opacity="0.7"/>
+              
+              {/* Left Arm */}
+              <rect x="28" y="100" width="32" height="14" fill="#E8B89C" rx="7" transform="rotate(-25 60 107)"/>
+              <rect x="20" y="110" width="18" height="11" fill="#E8B89C" rx="6" transform="rotate(-30 30 125)"/>
+              
+              {/* Right Arm */}
+              <rect x="140" y="100" width="32" height="14" fill="#E8B89C" rx="7" transform="rotate(25 140 107)"/>
+              <rect x="162" y="110" width="18" height="11" fill="#E8B89C" rx="6" transform="rotate(30 170 125)"/>
+              
+              {/* Left Leg */}
+              <rect x="85" y="160" width="13" height="40" fill="#6B4423" rx="6"/>
+              <rect x="85" y="200" width="16" height="14" fill="#9B7966" rx="5"/>
+              
+              {/* Right Leg */}
+              <rect x="102" y="160" width="13" height="40" fill="#6B4423" rx="6"/>
+              <rect x="102" y="200" width="16" height="14" fill="#9B7966" rx="5"/>
+            </svg>
+            <p className="font-script text-lg text-rose-d mt-2">Hope</p>
+          </div>
         </div>
+      )}
+
+      {/* Click Text Below */}
+      {!cardsRising && (
+        <p className="text-center text-gold font-body text-sm tracking-widest animate-shine cursor-pointer hover:text-gold-light transition-colors"
+          onClick={handleOpenEnvelope}>
+          CLICK TO OPEN
+        </p>
       )}
 
       {/* Cards Section */}
