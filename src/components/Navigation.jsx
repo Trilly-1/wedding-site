@@ -51,11 +51,11 @@ export default function Navigation() {
       {/* Marquee Banner */}
       <div className="fixed top-0 left-0 right-0 z-[99998] bg-gradient-to-r from-rose-d via-rose to-rose-d h-9 flex items-center overflow-hidden border-b border-rose-d/30">
         <div className="marquee-scroll whitespace-nowrap flex items-center gap-12">
-          <span className="text-white marquee-date">✨ June 13, 2026 ✨</span>
+          <span className="text-white marquee-date">🍰 June 13, 2026 🍰</span>
           <span className="text-white marquee-text">Timothy weds Hope</span>
-          <span className="text-white marquee-date">✨ June 13, 2026 ✨</span>
+          <span className="text-white marquee-date">🍰 June 13, 2026 🍰</span>
           <span className="text-white marquee-text">Timothy weds Hope</span>
-          <span className="text-white marquee-date">✨ June 13, 2026 ✨</span>
+          <span className="text-white marquee-date">🍰 June 13, 2026 🍰</span>
           <span className="text-white marquee-text">Timothy weds Hope</span>
         </div>
       </div>
