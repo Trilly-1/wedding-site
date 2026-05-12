@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Sparkles, Ring } from 'lucide-react'
 
 export default function EnvelopeIntro({ onEnter }) {
   const [stage, setStage] = useState('idle')
@@ -128,8 +129,8 @@ export default function EnvelopeIntro({ onEnter }) {
             <p>
               In Timothy's steady strength and Hope's gentle grace, we found home in each other.
             </p>
-            <p className="text-rose-d font-display text-2xl mt-8">
-              ✨ A love worth celebrating ✨
+            <p className="text-rose-d font-display text-2xl mt-8 flex items-center justify-center gap-3">
+              <Sparkles size={24} /><span>A love worth celebrating</span><Sparkles size={24} />
             </p>
           </div>
         </div>
@@ -302,7 +303,7 @@ export default function EnvelopeIntro({ onEnter }) {
               transform: 'translateX(200px) rotateZ(12deg) scale(0.9)',
             }}>
             <div className="text-center h-full flex flex-col justify-center gap-4">
-              <div className="text-3xl">💍</div>
+              <Ring size={40} className="text-rose-d mx-auto" />
               <p className="font-display italic text-[0.85rem] text-ink-l leading-relaxed">
                 Join us as we celebrate our love and commitment
               </p>

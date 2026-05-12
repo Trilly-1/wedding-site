@@ -1,3 +1,5 @@
+import { Ring, Flower, Heart } from 'lucide-react'
+
 export default function Footer() {
   return (
     <footer className="relative py-20 text-center overflow-hidden"
@@ -23,7 +25,7 @@ export default function Footer() {
         {/* Names */}
         <div className="flex items-center justify-center gap-3 mb-2">
           <span className="font-script text-[3rem] text-cream/90 leading-none">Timothy</span>
-          <span className="text-2xl">💍</span>
+          <Ring size={28} className="text-gold" />
           <span className="font-script text-[3rem] text-cream/90 leading-none">Hope</span>
         </div>
 
@@ -48,12 +50,12 @@ export default function Footer() {
           ))}
         </nav>
 
-        <div className="flex items-center justify-center gap-2 text-gold/25 mb-5 tracking-widest text-sm">
-          <span>❀</span><span>✿</span><span>❀</span>
+        <div className="flex items-center justify-center gap-2 text-gold/25 mb-5">
+          <Flower size={16} /><Flower size={16} /><Flower size={16} />
         </div>
 
-        <p className="font-body text-[0.68rem] text-cream/20 tracking-widest">
-          Made with 💛 for Timothy &amp; Hope · 2026
+        <p className="font-body text-[0.68rem] text-cream/20 tracking-widest flex items-center justify-center gap-1">
+          Made with <Heart size={14} className="text-rose-d" /> for Timothy &amp; Hope · 2026
         </p>
       </div>
     </footer>
