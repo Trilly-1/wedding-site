@@ -90,13 +90,39 @@ export default function EnvelopeIntro({ onEnter }) {
         </p>
       )}
 
-      {/* Envelope with Avatars */}
+      {/* Envelope */}
       {!cardsRising && (
-        <div className="relative flex items-center justify-center gap-8 mb-8">
+        <div className="relative cursor-pointer group mb-2" onClick={handleOpenEnvelope}>
+          <div className="w-80 h-56 rounded-lg shadow-2xl overflow-hidden"
+            style={{ background: 'linear-gradient(135deg, #E8D5B7 0%, #F5E6D3 100%)' }}>
+            
+            {/* Envelope body with fold lines */}
+            <div className="absolute inset-0 w-full h-full">
+              <div className="absolute inset-0 flex items-center justify-center">
+                <svg className="w-32 h-24 opacity-80" viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+                  {/* Envelope outline */}
+                  <rect x="20" y="30" width="160" height="100" fill="none" stroke="#C9A05A" strokeWidth="2" />
+                  {/* Flap */}
+                  <polygon points="20,30 100,80 180,30" fill="none" stroke="#C9A05A" strokeWidth="2" />
+                </svg>
+              </div>
+
+              {/* Seal */}
+              <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 w-20 h-20 rounded-full bg-rose-d flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all animate-pulse-glow">
+                <span className="text-white font-script text-2xl animate-shine">T&H</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Avatars Below Envelope - Holding Button */}
+      {!cardsRising && (
+        <div className="relative flex items-center justify-center gap-12 mt-8">
           
           {/* Timothy Avatar (Left) */}
           <div className="flex flex-col items-center">
-            <svg className="w-48 h-56 drop-shadow-lg" viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg">
+            <svg className="w-40 h-48 drop-shadow-lg" viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg">
               {/* Head */}
               <circle cx="100" cy="50" r="28" fill="#D4A574" stroke="#8B7355" strokeWidth="1.5"/>
               
@@ -132,36 +158,18 @@ export default function EnvelopeIntro({ onEnter }) {
               <rect x="105" y="165" width="15" height="35" fill="#3D3428" rx="7"/>
               <rect x="104" y="200" width="18" height="15" fill="#2C2416" rx="5"/>
             </svg>
-            <p className="font-script text-lg text-rose-d mt-2">Timothy</p>
           </div>
 
-          {/* Envelope - Click to Open */}
-          <div className="relative cursor-pointer group" onClick={handleOpenEnvelope}>
-            <div className="w-80 h-56 rounded-lg shadow-2xl overflow-hidden"
-              style={{ background: 'linear-gradient(135deg, #E8D5B7 0%, #F5E6D3 100%)' }}>
-              
-              {/* Envelope body with fold lines */}
-              <div className="absolute inset-0 w-full h-full">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <svg className="w-32 h-24 opacity-80" viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-                    {/* Envelope outline */}
-                    <rect x="20" y="30" width="160" height="100" fill="none" stroke="#C9A05A" strokeWidth="2" />
-                    {/* Flap */}
-                    <polygon points="20,30 100,80 180,30" fill="none" stroke="#C9A05A" strokeWidth="2" />
-                  </svg>
-                </div>
-
-                {/* Seal */}
-                <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 w-20 h-20 rounded-full bg-rose-d flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all animate-pulse-glow">
-                  <span className="text-white font-script text-2xl animate-shine">T&H</span>
-                </div>
-              </div>
-            </div>
+          {/* Click Button Text - Center */}
+          <div className="flex flex-col items-center cursor-pointer" onClick={handleOpenEnvelope}>
+            <p className="text-center text-gold font-body text-sm tracking-widest animate-shine hover:text-gold-light transition-colors">
+              CLICK TO OPEN
+            </p>
           </div>
 
           {/* Hope Avatar (Right) */}
           <div className="flex flex-col items-center">
-            <svg className="w-48 h-56 drop-shadow-lg" viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg">
+            <svg className="w-40 h-48 drop-shadow-lg" viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg">
               {/* Head */}
               <circle cx="100" cy="50" r="26" fill="#E8B89C" stroke="#9B7966" strokeWidth="1.5"/>
               
@@ -198,17 +206,8 @@ export default function EnvelopeIntro({ onEnter }) {
               <rect x="102" y="160" width="13" height="40" fill="#6B4423" rx="6"/>
               <rect x="102" y="200" width="16" height="14" fill="#9B7966" rx="5"/>
             </svg>
-            <p className="font-script text-lg text-rose-d mt-2">Hope</p>
           </div>
         </div>
-      )}
-
-      {/* Click Text Below */}
-      {!cardsRising && (
-        <p className="text-center text-gold font-body text-sm tracking-widest animate-shine cursor-pointer hover:text-gold-light transition-colors"
-          onClick={handleOpenEnvelope}>
-          CLICK TO OPEN
-        </p>
       )}
 
       {/* Cards Section */}
