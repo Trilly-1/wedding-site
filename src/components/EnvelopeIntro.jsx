@@ -14,10 +14,10 @@ export default function EnvelopeIntro({ onEnter }) {
           transform: translateX(0) translateY(0) scale(1) rotateZ(0deg);
         }
         50% {
-          transform: translateX(60px) translateY(-8px) scale(1) rotateZ(-2deg);
+          transform: translateX(100px) translateY(-8px) scale(1) rotateZ(-2deg);
         }
         100% {
-          transform: translateX(120px) translateY(0) scale(1) rotateZ(-3deg);
+          transform: translateX(200px) translateY(0) scale(1) rotateZ(-3deg);
         }
       }
 
@@ -26,10 +26,10 @@ export default function EnvelopeIntro({ onEnter }) {
           transform: translateX(0) translateY(0) scale(1) rotateZ(0deg);
         }
         50% {
-          transform: translateX(-60px) translateY(-8px) scale(1) rotateZ(2deg);
+          transform: translateX(-100px) translateY(-8px) scale(1) rotateZ(2deg);
         }
         100% {
-          transform: translateX(-120px) translateY(0) scale(1) rotateZ(3deg);
+          transform: translateX(-200px) translateY(0) scale(1) rotateZ(3deg);
         }
       }
 
@@ -288,17 +288,8 @@ export default function EnvelopeIntro({ onEnter }) {
           {/* LEFT AVATAR - Timothy (TALL) - Starts on LEFT of envelope */}
           <div className="absolute animate-fly-in-left animate-move-left-to-hug hidden md:block" style={{ animationDelay: '0s', left: '-120px' }}>
             <div className="relative w-64 h-64 mx-auto animate-float animate-sway-left">
-              <div className="absolute inset-0 rounded-full animate-pulse-glow" />
-              <div
-                className="w-full h-full rounded-full flex items-center justify-center relative overflow-hidden"
-                style={{
-                  background: 'linear-gradient(135deg, #c9a05a 0%, #e5d4b8 50%, #c9a05a 100%)',
-                  boxShadow: '0 20px 60px rgba(201, 160, 90, 0.4)',
-                  border: '4px solid rgba(255, 255, 255, 0.3)',
-                }}
-              >
-                {/* Timothy - Male Avatar - TALL */}
-                <svg className="w-5/6 h-5/6" viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg">
+              {/* Timothy - Male Avatar - TALL */}
+              <svg className="w-full h-full" viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg">
                   {/* Head */}
                   <circle cx="100" cy="50" r="35" fill="#FFD7A8" stroke="#8B6F47" strokeWidth="2.5" />
                   {/* Short Hair - masculine */}
@@ -340,24 +331,14 @@ export default function EnvelopeIntro({ onEnter }) {
                   <ellipse cx="78" cy="220" rx="8" ry="5" fill="#3D3D3D" />
                   <ellipse cx="122" cy="220" rx="8" ry="5" fill="#3D3D3D" />
                 </svg>
-              </div>
             </div>
           </div>
 
           {/* RIGHT AVATAR - Hope (SHORT) - Starts on RIGHT of envelope */}
           <div className="absolute animate-fly-in-right animate-move-right-to-hug hidden md:block" style={{ animationDelay: '0.2s', right: '-120px' }}>
             <div className="relative w-56 h-56 mx-auto animate-float animate-sway-right" style={{ animationDelay: '0.3s' }}>
-              <div className="absolute inset-0 rounded-full animate-pulse-glow" />
-              <div
-                className="w-full h-full rounded-full flex items-center justify-center relative overflow-hidden"
-                style={{
-                  background: 'linear-gradient(135deg, #FFB6D9 0%, #FFD7E8 50%, #FFB6D9 100%)',
-                  boxShadow: '0 20px 60px rgba(255, 107, 177, 0.4)',
-                  border: '4px solid rgba(255, 255, 255, 0.3)',
-                }}
-              >
-                {/* Hope - Female Avatar - SHORT */}
-                <svg className="w-5/6 h-5/6" viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg">
+              {/* Hope - Female Avatar - SHORT */}
+              <svg className="w-full h-full" viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg">
                   {/* Head */}
                   <circle cx="100" cy="45" r="32" fill="#FFE0D8" stroke="#C08B7F" strokeWidth="2.5" />
                   {/* Long Hair - feminine */}
@@ -403,7 +384,6 @@ export default function EnvelopeIntro({ onEnter }) {
                   <ellipse cx="83" cy="182" rx="6" ry="4" fill="#FFB6D9" stroke="#E91E63" strokeWidth="1" />
                   <ellipse cx="117" cy="182" rx="6" ry="4" fill="#FFB6D9" stroke="#E91E63" strokeWidth="1" />
                 </svg>
-              </div>
             </div>
           </div>
         </div>
