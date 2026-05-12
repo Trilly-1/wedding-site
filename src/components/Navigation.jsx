@@ -80,13 +80,12 @@ export default function Navigation() {
         bg-white/10
         backdrop-blur-2xl
         border-b border-white/10
-        max-h-screen overflow-y-auto
       "
       style={{
         boxShadow: '0 10px 30px rgba(0,0,0,0.25)',
       }}
     >
-      <div className="max-w-6xl mx-auto h-16 px-6 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto h-16 px-6 flex items-center justify-between w-full">
 
         {/* LOGO */}
         <a href="#hero" className="font-script text-[#E8C880] text-[2rem]">
@@ -117,7 +116,7 @@ export default function Navigation() {
 
       {/* MOBILE MENU */}
       {open && (
-        <div className="md:hidden bg-black/70 backdrop-blur-xl py-6 flex flex-col items-center gap-6">
+        <div className="fixed top-[3.5rem] left-0 right-0 md:hidden bg-black/90 backdrop-blur-xl py-6 flex flex-col items-center gap-6 z-[99998]">
           {links.map(([href, label]) => (
             <a
               key={href}
