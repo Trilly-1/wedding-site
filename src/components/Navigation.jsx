@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const links = [
   ['#hero', 'Home'],
@@ -13,10 +13,43 @@ const links = [
 export default function Navigation() {
   const [open, setOpen] = useState(false)
 
+  useEffect(() => {
+    // Add marquee animation styles
+    const style = document.createElement('style')
+    style.textContent = `
+      @keyframes marquee {
+        0% { transform: translateX(100%); }
+        100% { transform: translateX(-100%); }
+      }
+      .marquee-scroll {
+        animation: marquee 20s linear infinite;
+      }
+      .marquee-scroll:hover {
+        animation-play-state: paused;
+      }
+    `
+    document.head.appendChild(style)
+    return () => style.remove()
+  }, [])
+
+  return (
+    <>
+      {/* Marquee Banner */}
+      <div className="fixed top-0 left-0 right-0 z-[99998] bg-gradient-to-r from-rose-d via-rose to-rose-d h-8 flex items-center overflow-hidden border-b border-rose-d/30">
+        <div className="marquee-scroll whitespace-nowrap flex items-center gap-8">
+          <span className="text-white font-script text-lg">✨ June 13, 2026 ✨</span>
+          <span className="text-white font-body text-sm tracking-widest">Timothy weds Hope</span>
+          <span className="text-white font-script text-lg">✨ June 13, 2026 ✨</span>
+          <span className="text-white font-body text-sm tracking-widest">Timothy weds Hope</span>
+          <span className="text-white font-script text-lg">✨ June 13, 2026 ✨</span>
+          <span className="text-white font-body text-sm tracking-widest">Timothy weds Hope</span>
+        </div>
+      </div>
+
   return (
     <nav
       className="
-        fixed top-0 left-0 right-0
+        fixed top-8 left-0 right-0
         z-[99999]
         bg-white/10
         backdrop-blur-2xl
@@ -71,5 +104,6 @@ export default function Navigation() {
         </div>
       )}
     </nav>
+    </>
   )
 }
