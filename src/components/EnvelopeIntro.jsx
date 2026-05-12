@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Sparkles, Ring } from 'lucide-react'
+import { Sparkles, Gem } from 'lucide-react'
 
 export default function EnvelopeIntro({ onEnter }) {
   const [stage, setStage] = useState('idle')

@@ -1,5 +1,5 @@
 import { useInView } from 'react-intersection-observer'
-import { Flower, Heart, Camera, Wine, UtensilsCrossed, Music, Sparkles, Tulip, User, CheckSquare, Leaf } from 'lucide-react'
+import { Flower, Heart, Camera, Wine, UtensilsCrossed, Music, Sparkles, Shirt, User, CheckSquare, Leaf } from 'lucide-react'
 
 const program = [
   { time: '9:00 AM',  icon: Flower, title: 'Guest Arrival',         desc: 'Welcome reception, light refreshments served' },
@@ -14,7 +14,7 @@ const program = [
 
 const dress = [
   {
-    icon: Tulip,
+    icon: Shirt,
     title: 'Ladies',
     desc: 'Elegant ladies are welcome in graceful and beautiful wedding attire.',
     swatches: ['#F2C4CE','#E8C880','#7A9B6E','#FBE8ED','#DDD5C0'],
@@ -57,7 +57,7 @@ export default function EventDetails() {
         </SectionBlock>
 
         {/* Dress code */}
-        <SectionBlock title="Dress Code" icon={Tulip} className="mt-16">
+        <SectionBlock title="Dress Code" icon={Shirt} className="mt-16">
           <p className="font-display italic text-ink-l text-[1rem] mb-6 leading-relaxed">
             We'd love our guests to dress out of their comfort and have a perfect feel of our day.
           </p>

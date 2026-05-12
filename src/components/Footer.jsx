@@ -1,4 +1,4 @@
-import { Ring, Flower, Heart } from 'lucide-react'
+import { Gem, Flower, Heart } from 'lucide-react'
 
 export default function Footer() {
   return (
@@ -25,7 +25,7 @@ export default function Footer() {
         {/* Names */}
         <div className="flex items-center justify-center gap-3 mb-2">
           <span className="font-script text-[3rem] text-cream/90 leading-none">Timothy</span>
-          <Ring size={28} className="text-gold" />
+          <Gem size={28} className="text-gold" />
           <span className="font-script text-[3rem] text-cream/90 leading-none">Hope</span>
         </div>
 
