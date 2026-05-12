@@ -58,7 +58,7 @@ export default function EnvelopeIntro({ onEnter }) {
       @keyframes flyInFromLeft {
         0% {
           opacity: 0;
-          transform: translateX(-250px) translateY(-30px) scale(0.6);
+          transform: translateX(-150px) translateY(-30px) scale(0.6);
         }
         100% {
           opacity: 1;
@@ -69,7 +69,7 @@ export default function EnvelopeIntro({ onEnter }) {
       @keyframes flyInFromRight {
         0% {
           opacity: 0;
-          transform: translateX(250px) translateY(-30px) scale(0.6);
+          transform: translateX(150px) translateY(-30px) scale(0.6);
         }
         100% {
           opacity: 1;
@@ -286,7 +286,7 @@ export default function EnvelopeIntro({ onEnter }) {
       {stage === 'idle' && (
         <div className="absolute inset-0 z-40 flex items-center justify-center pointer-events-none" style={{ opacity: leaving ? 0 : 1, transition: 'opacity 0.7s ease' }}>
           {/* LEFT AVATAR - Timothy (TALL) - Starts on LEFT of envelope */}
-          <div className="absolute animate-fly-in-left animate-move-left-to-hug hidden md:block" style={{ animationDelay: '0s', left: '-200px' }}>
+          <div className="absolute animate-fly-in-left animate-move-left-to-hug hidden md:block" style={{ animationDelay: '0s', left: '-120px' }}>
             <div className="relative w-64 h-64 mx-auto animate-float animate-sway-left">
               <div className="absolute inset-0 rounded-full animate-pulse-glow" />
               <div
@@ -345,7 +345,7 @@ export default function EnvelopeIntro({ onEnter }) {
           </div>
 
           {/* RIGHT AVATAR - Hope (SHORT) - Starts on RIGHT of envelope */}
-          <div className="absolute animate-fly-in-right animate-move-right-to-hug hidden md:block" style={{ animationDelay: '0.2s', right: '-200px' }}>
+          <div className="absolute animate-fly-in-right animate-move-right-to-hug hidden md:block" style={{ animationDelay: '0.2s', right: '-120px' }}>
             <div className="relative w-56 h-56 mx-auto animate-float animate-sway-right" style={{ animationDelay: '0.3s' }}>
               <div className="absolute inset-0 rounded-full animate-pulse-glow" />
               <div
