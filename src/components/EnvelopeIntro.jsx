@@ -32,6 +32,16 @@ export default function EnvelopeIntro({ onEnter }) {
         100% { opacity: 0; transform: translateY(100vh) rotate(360deg); }
       }
 
+      @keyframes fade-in-up {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      @keyframes fade-out-down {
+        from { opacity: 1; transform: translateY(0); }
+        to { opacity: 0; transform: translateY(30px); }
+      }
+
       .animate-float {
         animation: float 3s ease-in-out infinite;
       }
@@ -53,6 +63,14 @@ export default function EnvelopeIntro({ onEnter }) {
         animation: fadeOut 0.7s ease-out forwards;
       }
 
+      .love-story-enter {
+        animation: fade-in-up 0.8s ease-out forwards;
+      }
+
+      .love-story-exit {
+        animation: fade-out-down 0.8s ease-out forwards;
+      }
+
       @keyframes fadeOut {
         to { opacity: 0; }
       }
@@ -61,8 +79,18 @@ export default function EnvelopeIntro({ onEnter }) {
     return () => style.remove()
   }, [])
 
+  // Auto-transition from love story to cards after 3 seconds
+  useEffect(() => {
+    if (stage === 'love-story') {
+      const timer = setTimeout(() => {
+        setStage('cards-rising')
+      }, 3500)
+      return () => clearTimeout(timer)
+    }
+  }, [stage])
+
   const handleOpenEnvelope = () => {
-    setStage('cards-rising')
+    setStage('love-story')
   }
 
   const handleViewMore = () => {
@@ -71,6 +99,7 @@ export default function EnvelopeIntro({ onEnter }) {
   }
 
   const cardsRising = stage === 'cards-rising'
+  const showLoveStory = stage === 'love-story'
 
   return (
     <div className={`relative min-h-screen flex flex-col items-center justify-center bg-dark-grad overflow-hidden transition-all duration-700 ${leaving ? 'scene-leave' : ''}`}>
@@ -88,15 +117,33 @@ export default function EnvelopeIntro({ onEnter }) {
         ))}
       </div>
 
-      {/* Tagline */}
-      {!cardsRising && (
+      {/* Love Story Section */}
+      {showLoveStory && (
+        <div className={`text-center max-w-2xl px-6 love-story-enter`}>
+          <h2 className="font-script text-5xl text-rose-d mb-6">Our Love Story</h2>
+          <div className="space-y-4 font-body text-ink text-lg leading-relaxed">
+            <p className="italic">
+              Two hearts, separated by distance, drawn together by faith and purpose.
+            </p>
+            <p>
+              In Timothy's steady strength and Hope's gentle grace, we found home in each other.
+            </p>
+            <p className="text-rose-d font-display text-2xl mt-8">
+              ✨ A love worth celebrating ✨
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* Original envelope + avatar section - only show if not in love-story or cards */}
+      {!showLoveStory && !cardsRising && (
         <p className="font-body text-[0.7rem] tracking-[0.4em] uppercase text-gold/60 mb-6">
           You have a message
         </p>
       )}
 
       {/* Envelope */}
-      {!cardsRising && (
+      {!showLoveStory && !cardsRising && (
         <div className="relative cursor-pointer group mb-2" onClick={handleOpenEnvelope}>
           <div className="w-80 h-56 rounded-lg shadow-2xl overflow-hidden"
             style={{ background: 'linear-gradient(135deg, #E8D5B7 0%, #F5E6D3 100%)' }}>
@@ -122,7 +169,7 @@ export default function EnvelopeIntro({ onEnter }) {
       )}
 
       {/* Avatars Below Envelope - Holding Button */}
-      {!cardsRising && (
+      {!showLoveStory && !cardsRising && (
         <div className="relative flex items-center justify-center gap-12 mt-8">
           
           {/* Timothy Avatar (Left) */}
