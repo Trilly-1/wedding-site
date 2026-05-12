@@ -1,14 +1,16 @@
-import { useState } from 'react'
+import { useState, lazy, Suspense } from 'react'
 import EnvelopeIntro from './components/EnvelopeIntro'
-import Navigation   from './components/Navigation'
-import Hero         from './components/Hero'
-import LoveStory    from './components/LoveStory'
-import Countdown    from './components/Countdown'
-import EventDetails from './components/EventDetails'
-import Location     from './components/Location'
-import Gallery      from './components/Gallery'
-import Gifts        from './components/Gifts'
-import Footer       from './components/Footer'
+
+// Lazy load main components
+const Navigation = lazy(() => import('./components/Navigation'))
+const Hero = lazy(() => import('./components/Hero'))
+const LoveStory = lazy(() => import('./components/LoveStory'))
+const Countdown = lazy(() => import('./components/Countdown'))
+const EventDetails = lazy(() => import('./components/EventDetails'))
+const Location = lazy(() => import('./components/Location'))
+const Gallery = lazy(() => import('./components/Gallery'))
+const Gifts = lazy(() => import('./components/Gifts'))
+const Footer = lazy(() => import('./components/Footer'))
 
 export default function App() {
   const [showMain, setShowMain] = useState(false)
@@ -18,19 +20,21 @@ export default function App() {
       {!showMain
         ? <EnvelopeIntro onEnter={() => setShowMain(true)} />
         : (
-          <div className="min-h-screen bg-cream animate-[fadeUp_0.8s_ease_both]">
-            <Navigation />
-            <main>
-              <Hero />
-              <LoveStory />
-              <Countdown />
-              <EventDetails />
-              <Location />
-              <Gallery />
-              <Gifts />
-            </main>
-            <Footer />
-          </div>
+          <Suspense fallback={<div className="min-h-screen bg-cream flex items-center justify-center"><p className="text-ink-l">Loading...</p></div>}>
+            <div className="min-h-screen bg-cream animate-[fadeUp_0.8s_ease_both]">
+              <Navigation />
+              <main>
+                <Hero />
+                <LoveStory />
+                <Countdown />
+                <EventDetails />
+                <Location />
+                <Gallery />
+                <Gifts />
+              </main>
+              <Footer />
+            </div>
+          </Suspense>
         )
       }
 

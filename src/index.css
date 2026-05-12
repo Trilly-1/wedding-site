@@ -4,8 +4,14 @@
 
 /* ── Google Font fallback & base ── */
 @layer base {
-  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
-  body { @apply bg-cream text-ink font-body overflow-x-hidden; }
+  html { 
+    scroll-behavior: smooth; 
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body { 
+    @apply bg-cream text-ink font-body overflow-x-hidden; 
+  }
   ::-webkit-scrollbar { width: 5px; }
   ::-webkit-scrollbar-track { @apply bg-cream-d; }
   ::-webkit-scrollbar-thumb { @apply bg-dusty rounded; }
