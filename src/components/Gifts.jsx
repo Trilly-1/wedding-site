@@ -1,5 +1,4 @@
 import { useInView } from "react-intersection-observer";
-import { Flower } from 'lucide-react'
 
 export default function Gifts() {
   const { ref, inView } = useInView({
@@ -39,7 +38,7 @@ export default function Gifts() {
 
             {/* content */}
             <div className="relative z-10">
-              <Flower size={40} className="text-gold mx-auto mb-4" />
+              <div className="text-3xl mb-4">🌸</div>
 
               <h3
                 className="font-script mb-4"
