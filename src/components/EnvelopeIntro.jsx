@@ -14,28 +14,28 @@ export default function EnvelopeIntro({ onEnter }) {
           transform: translateX(0) translateY(0) scale(1) rotateZ(0deg);
         }
         12% {
-          transform: translateX(24px) translateY(-12px) scale(1) rotateZ(-1deg);
+          transform: translateX(48px) translateY(-12px) scale(1) rotateZ(-1deg);
         }
         25% {
-          transform: translateX(50px) translateY(0) scale(1) rotateZ(-1deg);
+          transform: translateX(100px) translateY(0) scale(1) rotateZ(-1deg);
         }
         37% {
-          transform: translateX(74px) translateY(-12px) scale(1) rotateZ(-2deg);
+          transform: translateX(148px) translateY(-12px) scale(1) rotateZ(-2deg);
         }
         50% {
-          transform: translateX(100px) translateY(-8px) scale(1) rotateZ(-2deg);
+          transform: translateX(200px) translateY(-8px) scale(1) rotateZ(-2deg);
         }
         62% {
-          transform: translateX(124px) translateY(-12px) scale(1) rotateZ(-2.5deg);
+          transform: translateX(248px) translateY(-12px) scale(1) rotateZ(-2.5deg);
         }
         75% {
-          transform: translateX(150px) translateY(0) scale(1) rotateZ(-2.5deg);
+          transform: translateX(300px) translateY(0) scale(1) rotateZ(-2.5deg);
         }
         87% {
-          transform: translateX(174px) translateY(-12px) scale(1) rotateZ(-3deg);
+          transform: translateX(348px) translateY(-12px) scale(1) rotateZ(-3deg);
         }
         100% {
-          transform: translateX(200px) translateY(0) scale(1) rotateZ(-3deg);
+          transform: translateX(400px) translateY(0) scale(1) rotateZ(-3deg);
         }
       }
 
@@ -44,28 +44,28 @@ export default function EnvelopeIntro({ onEnter }) {
           transform: translateX(0) translateY(0) scale(1) rotateZ(0deg);
         }
         12% {
-          transform: translateX(-24px) translateY(-12px) scale(1) rotateZ(1deg);
+          transform: translateX(-48px) translateY(-12px) scale(1) rotateZ(1deg);
         }
         25% {
-          transform: translateX(-50px) translateY(0) scale(1) rotateZ(1deg);
+          transform: translateX(-100px) translateY(0) scale(1) rotateZ(1deg);
         }
         37% {
-          transform: translateX(-74px) translateY(-12px) scale(1) rotateZ(2deg);
+          transform: translateX(-148px) translateY(-12px) scale(1) rotateZ(2deg);
         }
         50% {
-          transform: translateX(-100px) translateY(-8px) scale(1) rotateZ(2deg);
+          transform: translateX(-200px) translateY(-8px) scale(1) rotateZ(2deg);
         }
         62% {
-          transform: translateX(-124px) translateY(-12px) scale(1) rotateZ(2.5deg);
+          transform: translateX(-248px) translateY(-12px) scale(1) rotateZ(2.5deg);
         }
         75% {
-          transform: translateX(-150px) translateY(0) scale(1) rotateZ(2.5deg);
+          transform: translateX(-300px) translateY(0) scale(1) rotateZ(2.5deg);
         }
         87% {
-          transform: translateX(-174px) translateY(-12px) scale(1) rotateZ(3deg);
+          transform: translateX(-348px) translateY(-12px) scale(1) rotateZ(3deg);
         }
         100% {
-          transform: translateX(-200px) translateY(0) scale(1) rotateZ(3deg);
+          transform: translateX(-400px) translateY(0) scale(1) rotateZ(3deg);
         }
       }
 
@@ -350,8 +350,8 @@ export default function EnvelopeIntro({ onEnter }) {
       {/* ✨ ANIMATED AVATARS - Auto-play sequence ✨ */}
       {stage === 'idle' && (
         <div className="absolute inset-0 z-40 flex items-center justify-center pointer-events-none" style={{ opacity: leaving ? 0 : 1, transition: 'opacity 0.7s ease' }}>
-          {/* LEFT AVATAR - Timothy (TALL) - Starts on LEFT of envelope */}
-          <div className="absolute animate-fly-in-left animate-move-left-to-hug hidden md:block" style={{ animationDelay: '0s', left: '-120px' }}>
+          {/* LEFT AVATAR - Timothy (TALL) - Starts FAR LEFT */}
+          <div className="absolute animate-fly-in-left animate-move-left-to-hug hidden md:block" style={{ animationDelay: '0s', left: '-400px' }}>
             <div className="relative w-64 h-64 mx-auto animate-float animate-sway-left">
               {/* Timothy - Male Avatar - TALL */}
               <svg className="w-full h-full" viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg">
@@ -401,8 +401,8 @@ export default function EnvelopeIntro({ onEnter }) {
             </div>
           </div>
 
-          {/* RIGHT AVATAR - Hope (SHORT) - Starts on RIGHT of envelope */}
-          <div className="absolute animate-fly-in-right animate-move-right-to-hug hidden md:block" style={{ animationDelay: '0.2s', right: '-120px' }}>
+          {/* RIGHT AVATAR - Hope (SHORT) - Starts FAR RIGHT */}
+          <div className="absolute animate-fly-in-right animate-move-right-to-hug hidden md:block" style={{ animationDelay: '0.2s', right: '-400px' }}>
             <div className="relative w-56 h-56 mx-auto animate-float animate-sway-right" style={{ animationDelay: '0.3s' }}>
               {/* Hope - Female Avatar - SHORT */}
               <svg className="w-full h-full" viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg">
