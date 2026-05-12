@@ -20,6 +20,8 @@ export default function App() {
       {!showMain
         ? <EnvelopeIntro onEnter={() => setShowMain(true)} />
         : (
+          <>
+            <Navigation />
           <Suspense fallback={<div className="min-h-screen bg-cream flex items-center justify-center"><p className="text-ink-l">Loading...</p></div>}>
             <div className="min-h-screen bg-cream animate-[fadeUp_0.8s_ease_both]">
               <Navigation />
@@ -35,6 +37,7 @@ export default function App() {
               <Footer />
             </div>
           </Suspense>
+          </>
         )
       }
 
