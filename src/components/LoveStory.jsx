@@ -1,18 +1,19 @@
 import { useInView } from 'react-intersection-observer'
 import { useEffect, useState } from "react"
+import { Waves, Moon, Sun, Heart } from 'lucide-react'
 
 const chapters = [
   {
-    icon: '🏊',
+    icon: Waves,
     num: '01',
     tag: 'His words',
     title: 'A Splash of Fate',
-    body: `It all started at a swimming pool... the friendship, I mean. As a group of friends, we planned to meet and catch up, then all of a sudden, I see this black pretty babe walk through the gate. Everyone knew her and she joined us. Well… that's how we got to meet. The journey of friendship officially kicked off — exchanging numbers, then messages (all of which were platonic of course 😉). Slowly we got to know each other and in a period of 2 years, something deep started to grow. A feeling like none other… was that attachment, desire, or even love?`,
+    body: `It all started at a swimming pool... the friendship, I mean. As a group of friends, we planned to meet and catch up, then all of a sudden, I see this black pretty babe walk through the gate. Everyone knew her and she joined us. Well… that's how we got to meet. The journey of friendship officially kicked off — exchanging numbers, then messages (all of which were platonic of course). Slowly we got to know each other and in a period of 2 years, something deep started to grow. A feeling like none other… was that attachment, desire, or even love?`,
     img: '/img17.JPG',
     flip: false,
   },
   {
-    icon: '🌙',
+    icon: Moon,
     num: '02',
     tag: 'His words',
     title: 'Late Night Calls',
@@ -21,7 +22,7 @@ const chapters = [
     flip: true,
   },
   {
-    icon: '☀️',
+    icon: Sun,
     num: '03',
     tag: 'Her words',
     title: 'He Became My Sunshine',
@@ -30,7 +31,7 @@ const chapters = [
     flip: false,
   },
   {
-    icon: '💛',
+    icon: Heart,
     num: '04',
     tag: 'Her words',
     title: 'A Ray of Everything Good',
@@ -130,7 +131,7 @@ export default function LoveStory() {
 
                   {/* TEXT */}
                   <div className={ch.flip ? 'md:order-1' : ''}>
-                    <span className="text-5xl">{ch.icon}</span>
+                    <ch.icon size={48} className="text-rose-d mb-3" />
 
                     <span className="ml-3 text-[0.82rem] tracking-[0.3em] uppercase text-gold">
                       {ch.tag}
@@ -167,7 +168,7 @@ export default function LoveStory() {
                       {ch.num}
                     </div>
 
-                    <span className="text-5xl mb-3">{ch.icon}</span>
+                    <ch.icon size={48} className="text-rose-d mb-3" />
 
                     <span className="text-[0.75rem] uppercase text-[#E8C880]">
                       {ch.tag}

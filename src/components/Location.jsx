@@ -1,10 +1,11 @@
 import { useInView } from 'react-intersection-observer'
+import { MapPin, Calendar, Clock, Globe } from 'lucide-react'
 
 const details = [
-  { icon: '📍', label: 'Venue',  value: 'Life Beach Hotel, Busabala' },
-  { icon: '📅', label: 'Date',   value: 'Saturday, June 13, 2026' },
-  { icon: '⏰', label: 'Time',   value: 'Ceremony begins at 10:00 AM' },
-  { icon: '🌍', label: 'City',   value: 'Kampala, Uganda' },
+  { icon: MapPin, label: 'Venue',  value: 'Life Beach Hotel, Busabala' },
+  { icon: Calendar, label: 'Date',   value: 'Saturday, June 13, 2026' },
+  { icon: Clock, label: 'Time',   value: 'Ceremony begins at 10:00 AM' },
+  { icon: Globe, label: 'City',   value: 'Kampala, Uganda' },
 ]
 
 const venueImgs = [
@@ -31,7 +32,7 @@ export default function Location() {
           </h2>
           <div className="flex items-center justify-center gap-3">
             <span className="block w-20 h-px bg-dusty/50" />
-            <span>📍</span>
+            <MapPin size={24} className="text-gold" />
             <span className="block w-20 h-px bg-dusty/50" />
           </div>
         </div>
@@ -41,7 +42,7 @@ export default function Location() {
           style={{ transitionDelay: '0.15s' }}>
           {details.map((d, i) => (
             <div key={i} className="bg-white rounded-xl p-4 flex items-start gap-3 border border-gold/15 shadow-sm">
-              <span className="text-xl flex-shrink-0">{d.icon}</span>
+              <d.icon size={20} className="text-gold flex-shrink-0 mt-0.5" />
               <div>
                 <p className="font-body text-[0.6rem] tracking-[0.2em] uppercase text-gold mb-0.5">{d.label}</p>
                 <p className="font-display font-medium text-[0.9rem] text-ink leading-snug">{d.value}</p>
