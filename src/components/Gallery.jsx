@@ -1,4 +1,4 @@
-const imgs = Array.from({ length: 22 }, (_, i) => ({
+const imgs = Array.from({ length: 39 }, (_, i) => ({
   src: `/img${i + 1}.JPG`,
   alt: `Timothy and Hope — memory ${i + 1}`,
 }));

@@ -22,30 +22,36 @@ export default function Invitation() {
   return (
     <section className="py-24 relative overflow-hidden" style={{ background: '#F5EFE0' }}>
 
-      {/* Soft glow */}
       <div className="absolute inset-0 pointer-events-none" style={{
         background: 'radial-gradient(ellipse 70% 60% at 50% 50%, rgba(242,196,206,0.28), transparent 75%)'
       }} />
 
-      {/* Top floral border */}
       <div className="absolute top-0 left-0 right-0 flex items-center gap-3 justify-center py-4 pointer-events-none">
         <span className="block flex-1 max-w-xs h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(196,138,154,0.4))' }} />
-        <span style={{ fontFamily: 'Jost, sans-serif', fontSize: '0.7rem', letterSpacing: '0.35em', color: 'rgba(196,138,154,0.5)' }}>❀ ✿ ❀</span>
+        <span className="font-body text-[0.7rem] tracking-[0.35em]" style={{ color: 'rgba(196,138,154,0.5)' }}>❀ ✿ ❀</span>
         <span className="block flex-1 max-w-xs h-px" style={{ background: 'linear-gradient(to left, transparent, rgba(196,138,154,0.4))' }} />
       </div>
 
-      {/* Bottom floral border */}
       <div className="absolute bottom-0 left-0 right-0 flex items-center gap-3 justify-center py-4 pointer-events-none">
         <span className="block flex-1 max-w-xs h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(196,138,154,0.4))' }} />
-        <span style={{ fontFamily: 'Jost, sans-serif', fontSize: '0.7rem', letterSpacing: '0.35em', color: 'rgba(196,138,154,0.5)' }}>❀ ✿ ❀</span>
+        <span className="font-body text-[0.7rem] tracking-[0.35em]" style={{ color: 'rgba(196,138,154,0.5)' }}>❀ ✿ ❀</span>
         <span className="block flex-1 max-w-xs h-px" style={{ background: 'linear-gradient(to left, transparent, rgba(196,138,154,0.4))' }} />
       </div>
 
-      {/* Content */}
+      {/* ── Content — fade in when scrolled into view ── */}
       <div
         ref={ref}
-        className={`reveal ${inView ? 'in-view' : ''}`}
-        style={{ position: 'relative', zIndex: 10, maxWidth: '48rem', margin: '0 auto', padding: '0 1.5rem', textAlign: 'center' }}
+        style={{
+          position: 'relative',
+          zIndex: 10,
+          maxWidth: '48rem',
+          margin: '0 auto',
+          padding: '0 1.5rem',
+          textAlign: 'center',
+          opacity: inView ? 1 : 0,
+          transform: inView ? 'translateY(0)' : 'translateY(28px)',
+          transition: 'opacity 0.85s ease, transform 0.85s ease',
+        }}
       >
         <p style={{ fontFamily: 'Jost, sans-serif', fontSize: '0.68rem', letterSpacing: '0.45em', textTransform: 'uppercase', color: '#C9A05A', marginBottom: '1.5rem' }}>
           Together with their families

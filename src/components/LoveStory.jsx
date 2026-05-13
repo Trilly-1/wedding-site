@@ -9,7 +9,7 @@ const chapters = [
     tag: 'His words',
     title: 'A Splash of Fate',
     body: `It all started at a swimming pool... the friendship, I mean. As a group of friends, we planned to meet and catch up, then all of a sudden, I see this black pretty babe walk through the gate. Everyone knew her and she joined us. Well… that's how we got to meet. The journey of friendship officially kicked off — exchanging numbers, then messages (all of which were platonic of course). Slowly we got to know each other and in a period of 2 years, something deep started to grow. A feeling like none other… was that attachment, desire, or even love?`,
-    img: '/img17.JPG',
+    img: '/img38.JPG',
     flip: false,
   },
   {
