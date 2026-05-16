@@ -1,7 +1,36 @@
-const imgs = Array.from({ length: 39 }, (_, i) => ({
-  src: `/img${i + 1}.JPG`,
-  alt: `Timothy and Hope — memory ${i + 1}`,
-}));
+const imgs = [
+  { src: '/img1.jpeg', alt: 'Timothy and Hope — memory 1' },
+  { src: '/img2.JPG', alt: 'Timothy and Hope — memory 2' },
+  { src: '/img3.jpeg', alt: 'Timothy and Hope — memory 3' },
+  { src: '/img4.JPG', alt: 'Timothy and Hope — memory 4' },
+  { src: '/img5.JPG', alt: 'Timothy and Hope — memory 5' },
+  { src: '/img6.jpeg', alt: 'Timothy and Hope — memory 6' },
+  { src: '/img7.jpeg', alt: 'Timothy and Hope — memory 7' },
+  { src: '/img8.JPG', alt: 'Timothy and Hope — memory 8' },
+  { src: '/img9.JPG', alt: 'Timothy and Hope — memory 9' },
+  ...Array.from({ length: 15 }, (_, i) => ({
+    src: `/img${i + 10}.JPG`,
+    alt: `Timothy and Hope — memory ${i + 10}`,
+  })),
+  { src: '/img24.jpeg', alt: 'Timothy and Hope — memory 24' },
+  { src: '/img25.jpeg', alt: 'Timothy and Hope — memory 25' },
+  { src: '/img26.jpeg', alt: 'Timothy and Hope — memory 26' },
+  { src: '/img27.jpeg', alt: 'Timothy and Hope — memory 27' },
+  { src: '/img28.jpg', alt: 'Timothy and Hope — memory 28' },
+  { src: '/img29.jpeg', alt: 'Timothy and Hope — memory 29' },
+  { src: '/img30.jpeg', alt: 'Timothy and Hope — memory 30' },
+  { src: '/img31.jpeg', alt: 'Timothy and Hope — memory 31' },
+  { src: '/img32.jpeg', alt: 'Timothy and Hope — memory 32' },
+  { src: '/img33.jpeg', alt: 'Timothy and Hope — memory 33' },
+  { src: '/img34.jpeg', alt: 'Timothy and Hope — memory 34' },
+  { src: '/img35.jpeg', alt: 'Timothy and Hope — memory 35' },
+  { src: '/img36.jpeg', alt: 'Timothy and Hope — memory 36' },
+  { src: '/img37.jpeg', alt: 'Timothy and Hope — memory 37' },
+  { src: '/img38.jpeg', alt: 'Timothy and Hope — memory 38' },
+  { src: '/img39.JPG', alt: 'Timothy and Hope — memory 39' },
+  { src: '/img40.JPG', alt: 'Timothy and Hope — memory 40' },
+  { src: '/img41.JPG', alt: 'Timothy and Hope — memory 41' },
+];
 
 export default function MemoriesGallery() {
   return (

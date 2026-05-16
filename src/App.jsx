@@ -1,91 +1,52 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState } from 'react'
+import Navigation from './components/Navigation'
+import EnvelopeIntro from './components/EnvelopeIntro'
+import Hero from './components/Hero'
+import LoveStory from './components/LoveStory'
+import Countdown from './components/Countdown'
+import EventDetails from './components/EventDetails'
+import Invitation from './components/Invitation'
+import Location from './components/Location'
+import Gallery from './components/Gallery'
+import Gifts from './components/Gifts'
+import Footer from './components/Footer'
 
-function useInView({ threshold = 0.3 } = {}) {
-  const ref = useRef(null)
-  const [inView, setInView] = useState(false)
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setInView(true); observer.disconnect() } },
-      { threshold }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [threshold])
-  return { ref, inView }
-}
+export default function App() {
+  const [showEnvelope, setShowEnvelope] = useState(true)
 
-export default function Invitation() {
-  const { ref, inView } = useInView({ threshold: 0.3 })
+  const handleEnvelopeComplete = () => {
+    setShowEnvelope(false)
+  }
+
+  if (showEnvelope) {
+    return <EnvelopeIntro onEnter={handleEnvelopeComplete} />
+  }
 
   return (
-    <section className="py-24 relative overflow-hidden" style={{ background: '#F5EFE0' }}>
+    <div>
+      <Navigation />
+      <Hero />
+      <LoveStory />
+      <Countdown />
+      <EventDetails />
+      <Invitation />
+      <Location />
+      <Gallery />
+      <Gifts />
+      <Footer />
 
-      {/* Soft glow */}
-      <div className="absolute inset-0 pointer-events-none" style={{
-        background: 'radial-gradient(ellipse 70% 60% at 50% 50%, rgba(242,196,206,0.28), transparent 75%)'
-      }} />
-
-      {/* Top floral border */}
-      <div className="absolute top-0 left-0 right-0 flex items-center gap-3 justify-center py-4 pointer-events-none">
-        <span className="block flex-1 max-w-xs h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(196,138,154,0.4))' }} />
-        <span style={{ fontFamily: 'Jost, sans-serif', fontSize: '0.7rem', letterSpacing: '0.35em', color: 'rgba(196,138,154,0.5)' }}>❀ ✿ ❀</span>
-        <span className="block flex-1 max-w-xs h-px" style={{ background: 'linear-gradient(to left, transparent, rgba(196,138,154,0.4))' }} />
-      </div>
-
-      {/* Bottom floral border */}
-      <div className="absolute bottom-0 left-0 right-0 flex items-center gap-3 justify-center py-4 pointer-events-none">
-        <span className="block flex-1 max-w-xs h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(196,138,154,0.4))' }} />
-        <span style={{ fontFamily: 'Jost, sans-serif', fontSize: '0.7rem', letterSpacing: '0.35em', color: 'rgba(196,138,154,0.5)' }}>❀ ✿ ❀</span>
-        <span className="block flex-1 max-w-xs h-px" style={{ background: 'linear-gradient(to left, transparent, rgba(196,138,154,0.4))' }} />
-      </div>
-
-      {/* Content */}
-      <div
-        ref={ref}
-        className={`reveal ${inView ? 'in-view' : ''}`}
-        style={{ position: 'relative', zIndex: 10, maxWidth: '48rem', margin: '0 auto', padding: '0 1.5rem', textAlign: 'center' }}
-      >
-        <p style={{ fontFamily: 'Jost, sans-serif', fontSize: '0.68rem', letterSpacing: '0.45em', textTransform: 'uppercase', color: '#C9A05A', marginBottom: '1.5rem' }}>
-          Together with their families
-        </p>
-
-        <p style={{ fontFamily: 'Cormorant Garamond, serif', fontStyle: 'italic', fontSize: 'clamp(1.1rem, 2.5vw, 1.45rem)', color: '#3D2535', lineHeight: 1.7, marginBottom: '2rem' }}>
-          You are cordially invited to witness the union of
-        </p>
-
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', marginBottom: '2rem' }}>
-          <h2 style={{ fontFamily: 'Great Vibes, cursive', fontSize: 'clamp(2.8rem, 7vw, 4.8rem)', color: '#7A3050', lineHeight: 1 }}>
-            Timothy Etibu
-          </h2>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', margin: '0.6rem 0' }}>
-            <span style={{ display: 'block', width: '64px', height: '1px', background: 'rgba(201,160,90,0.5)' }} />
-            <span style={{ fontFamily: 'Cormorant Garamond, serif', fontStyle: 'italic', fontSize: '1.3rem', color: '#C9A05A' }}>&amp;</span>
-            <span style={{ display: 'block', width: '64px', height: '1px', background: 'rgba(201,160,90,0.5)' }} />
-          </div>
-          <h2 style={{ fontFamily: 'Great Vibes, cursive', fontSize: 'clamp(2.8rem, 7vw, 4.8rem)', color: '#7A3050', lineHeight: 1 }}>
-            Hope Constance Asede
-          </h2>
-        </div>
-
-        <div style={{
-          display: 'inline-flex', alignItems: 'center', gap: '12px',
-          padding: '10px 28px', borderRadius: '9999px',
-          background: 'rgba(201,160,90,0.1)', border: '1px solid rgba(201,160,90,0.3)',
-          marginBottom: '2rem',
-        }}>
-          <span style={{ fontFamily: 'Jost, sans-serif', fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#7A5A6A' }}>Saturday</span>
-          <span style={{ color: '#C9A05A' }}>·</span>
-          <span style={{ fontFamily: 'Cormorant Garamond, serif', fontWeight: 600, fontSize: '1.1rem', color: '#C9A05A' }}>June 13, 2026</span>
-          <span style={{ color: '#C9A05A' }}>·</span>
-          <span style={{ fontFamily: 'Jost, sans-serif', fontSize: '0.72rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#7A5A6A' }}>Uganda</span>
-        </div>
-
-        <p style={{ fontFamily: 'Cormorant Garamond, serif', fontStyle: 'italic', fontSize: '1rem', color: '#7A5A6A', lineHeight: 1.8 }}>
-          Your presence and blessings mean the world to us.
+      {/* GLOBAL FOOTER */}
+      <div className="fixed bottom-4 right-4 z-[99999] pointer-events-none">
+        <p
+          className={`text-sm tracking-[0.25em] font-semibold transition-colors duration-500 ${
+            showEnvelope
+              ? 'text-[#D4B06A]'   // gold (dark intro)
+              : 'text-[#A2526A]'   // purple (light site)
+          }`}
+        >
+          #Godiscooking
         </p>
       </div>
-    </section>
+    </div>
   )
 }
