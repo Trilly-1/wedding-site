@@ -1,11 +1,11 @@
 const imgs = [
   ...Array.from({ length: 17 }, (_, i) => {
     const num = i + 44;
-    if (num === 48) return null;
+    if ([48, 56].includes(num)) return null;
     return {
       src: `/img${num}.jpg`,
       alt: `Timothy and Hope — memory ${num}`,
-      pos: [56, 57, 58].includes(num) ? 'center 23%' : 'center top',
+      pos: [57, 58].includes(num) ? 'center 23%' : 'center top',
     };
   }).filter(Boolean),
 
