@@ -197,7 +197,26 @@ export default function LoveStory() {
 
                 {/* DESKTOP (UNCHANGED) */}
                 <div className="hidden md:grid md:grid-cols-2 gap-14 items-center">
-                  {/* unchanged desktop code */}
+                  <div className={ch.flip ? 'order-2' : ''}>
+                    <div className="rounded-2xl overflow-hidden shadow-2xl">
+                      <img src={ch.img} alt={ch.title} className="w-full h-[500px] object-cover" />
+                    </div>
+                  </div>
+
+                  <div className={ch.flip ? 'order-1' : ''}>
+                    <div className="flex items-center gap-4 mb-6">
+                      <ch.icon size={48} className="text-[#C9A05A]" />
+                      <div>
+                        <span className="text-[0.85rem] uppercase tracking-[0.3em] text-gold">
+                          {ch.tag}
+                        </span>
+                        <div className="text-5xl font-bold text-[#C9A05A]">{ch.num}</div>
+                      </div>
+                    </div>
+
+                    <h3 className="text-4xl font-bold mb-6 text-[#3D2535]">{ch.title}</h3>
+                    <p className="text-lg leading-8 text-[#5C4B51]">{ch.body}</p>
+                  </div>
                 </div>
 
               </div>

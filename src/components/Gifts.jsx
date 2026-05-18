@@ -1,5 +1,5 @@
 import { useInView } from "react-intersection-observer";
-import { Flower } from 'lucide-react'
+import { Flower } from "lucide-react";
 
 export default function Gifts() {
   const { ref, inView } = useInView({
@@ -52,7 +52,7 @@ export default function Gifts() {
               </h3>
 
               <p
-                className="font-display italic max-w-lg mx-auto leading-[1.9] mb-6 text-[1.04rem]"
+                className="font-display italic max-w-lg mx-auto leading-[1.9] mb-8 text-[1.04rem]"
                 style={{ color: "rgba(253,250,244,0.72)" }}
               >
                 Your presence at our wedding is the greatest gift of all. We
@@ -60,18 +60,43 @@ export default function Gifts() {
                 chapter. Thank you for being part of our story.
               </p>
 
-              <div
-                className="flex items-center justify-center gap-3 font-script text-[1.8rem]"
-                style={{ color: "rgba(253,250,244,0.62)" }}
-              >
-                <span>— Timothy</span>
+              {/* NAME STACK (FIXED LAYOUT) */}
+              <div className="flex items-center justify-center gap-3 font-script text-[1.8rem]">
+
+                {/* TIMOTHY (slightly up) */}
+                <span
+                  style={{
+                    color: "#FDFAF4",
+                    transform: "translateY(-6px)",
+                    display: "inline-block",
+                  }}
+                >
+                  Timothy
+                </span>
+
+                {/* RING */}
                 <span
                   className="font-display italic text-[1.3rem]"
-                  style={{ color: "#C9A05A" }}
+                  style={{
+                    color: "#C9A05A",
+                    transform: "translateY(0px)",
+                    display: "inline-block",
+                  }}
                 >
                   &amp;
                 </span>
-                <span>Hope —</span>
+
+                {/* HOPE (slightly down) */}
+                <span
+                  style={{
+                    color: "#FDFAF4",
+                    transform: "translateY(6px)",
+                    display: "inline-block",
+                  }}
+                >
+                  Hope
+                </span>
+
               </div>
             </div>
 
