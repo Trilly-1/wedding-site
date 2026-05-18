@@ -1,5 +1,5 @@
 const imgs = [
-  ...Array.from({ length: 8 }, (_, i) => {
+  ...Array.from({ length: 12 }, (_, i) => {
     const num = i + 44;
     if (num === 48) return null;
     return {
