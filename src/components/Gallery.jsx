@@ -1,11 +1,11 @@
 const imgs = [
-  ...Array.from({ length: 12 }, (_, i) => {
+  ...Array.from({ length: 17 }, (_, i) => {
     const num = i + 44;
     if (num === 48) return null;
     return {
       src: `/img${num}.jpg`,
       alt: `Timothy and Hope — memory ${num}`,
-      pos: 'center top',
+      pos: [56, 57, 58].includes(num) ? 'center 23%' : 'center top',
     };
   }).filter(Boolean),
 
@@ -32,13 +32,15 @@ const imgs = [
   { src: '/img24.jpeg', alt: 'Timothy and Hope — memory 24', pos: 'center center' },
   { src: '/img25.jpeg', alt: 'Timothy and Hope — memory 25', pos: 'center top' },
   { src: '/img26.jpeg', alt: 'Timothy and Hope — memory 26', pos: 'center top' },
+  { src: '/img27.jpg', alt: 'Timothy and Hope — memory 27', pos: 'center 20%' },
   { src: '/img31.jpeg', alt: 'Timothy and Hope — memory 31', pos: 'center top' },
   { src: '/img32.jpeg', alt: 'Timothy and Hope — memory 32', pos: 'center top' },
   { src: '/img33.jpeg', alt: 'Timothy and Hope — memory 33', pos: 'center 15%' },
   { src: '/img34.jpeg', alt: 'Timothy and Hope — memory 34', pos: 'center top' },
   { src: '/img35.jpeg', alt: 'Timothy and Hope — memory 35', pos: 'center center' },
   { src: '/img36.jpeg', alt: 'Timothy and Hope — memory 36', pos: 'center top' },
-  { src: '/img37.jpeg', alt: 'Timothy and Hope — memory 37', pos: 'center top' },
+  { src: '/img37.jpeg', alt: 'Timothy and Hope — memory 37', pos: 'center center' },
+  { src: '/img38.jpg', alt: 'Timothy and Hope — memory 38', pos: 'center center' },
   { src: '/img39.JPG', alt: 'Timothy and Hope — memory 39', pos: 'center top' },
   { src: '/img40.JPG', alt: 'Timothy and Hope — memory 40', pos: 'center 10%' },
   { src: '/img41.JPG', alt: 'Timothy and Hope — memory 41', pos: 'center top' },
